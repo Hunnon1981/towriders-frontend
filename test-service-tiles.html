@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Test - Click Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #dc2626;
+            margin-bottom: 20px;
+        }
+        .service-tiles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .service-tile {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .service-tile:hover {
+            border-color: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.1);
+        }
+        .service-tile.selected {
+            border-color: #dc2626;
+            background: #fef2f2;
+        }
+        .service-tile i {
+            font-size: 2rem;
+            color: #dc2626;
+            margin-bottom: 10px;
+        }
+        .service-tile .title {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.9rem;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f3f4f6;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+        }
+        .success {
+            background: #d1fae5;
+            border: 2px solid #10b981;
+            color: #065f46;
+        }
+        .info {
+            background: #dbeafe;
+            border: 2px solid #3b82f6;
+            color: #1e40af;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Service Tile Click Test</h1>
+        
+        <div class="info">
+            <strong>📋 Instructions:</strong><br>
+            1. Click on ANY service tile below<br>
+            2. The tile should get a red border and light red background<br>
+            3. A success message should appear below<br>
+            4. If nothing happens, open browser console (F12) to see errors
+        </div>
+        
+        <div class="service-tiles">
+            <div class="service-tile" data-service="towing_drivable">
+                <i class="fas fa-car"></i>
+                <div class="title">Towing<br>Drivable Vehicle</div>
+            </div>
+            <div class="service-tile" data-service="towing_nondrivable">
+                <i class="fas fa-truck-pickup"></i>
+                <div class="title">Towing<br>Non-Drivable</div>
+            </div>
+            <div class="service-tile" data-service="jump_start">
+                <i class="fas fa-bolt"></i>
+                <div class="title">Jump Start</div>
+            </div>
+            <div class="service-tile" data-service="tire_change">
+                <i class="fas fa-circle-notch"></i>
+                <div class="title">Tire Change</div>
+            </div>
+            <div class="service-tile" data-service="lockout">
+                <i class="fas fa-key"></i>
+                <div class="title">Lockout</div>
+            </div>
+            <div class="service-tile" data-service="fuel_delivery">
+                <i class="fas fa-gas-pump"></i>
+                <div class="title">Fuel Delivery</div>
+            </div>
+        </div>
+        
+        <div id="result" class="result" style="display: none;">
+            Waiting for click...
+        </div>
+    </div>
+    
+    <script>
+        let selectedService = null;
+        
+        // Wire up service tiles
+        function wireTiles() {
+            const tiles = document.querySelectorAll('.service-tile');
+            const resultDiv = document.getElementById('result');
+            
+            console.log('✅ Found', tiles.length, 'service tiles');
+            
+            tiles.forEach((tile, index) => {
+                console.log(`Tile ${index + 1}:`, tile.dataset.service);
+                
+                tile.addEventListener('click', () => {
+                    console.log('🎯 Tile clicked:', tile.dataset.service);
+                    
+                    // Remove selected from all tiles
+                    tiles.forEach(t => t.classList.remove('selected'));
+                    
+                    // Add selected to clicked tile
+                    tile.classList.add('selected');
+                    
+                    // Store selected service
+                    selectedService = tile.dataset.service;
+                    
+                    // Show result
+                    resultDiv.style.display = 'block';
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        ✅ SUCCESS! Service tile is working!<br><br>
+                        Selected Service: <strong>${selectedService}</strong><br>
+                        Service Name: <strong>${tile.querySelector('.title').textContent}</strong><br>
+                        Timestamp: ${new Date().toLocaleTimeString()}<br><br>
+                        🎉 The click functionality is working correctly!<br>
+                        If this test works but quote.html doesn't, the issue is elsewhere.
+                    `;
+                    
+                    console.log('✅ Selected service:', selectedService);
+                });
+            });
+        }
+        
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 Service Tile Click Test starting...');
+            wireTiles();
+            console.log('✅ Test ready! Click any service tile.');
+        });
+    </script>
+</body>
+</html>

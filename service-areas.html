@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TOW RIDERS serves all of Sacramento County with fast 20-30 minute response times. Coverage in Sacramento, Elk Grove, Rancho Cordova, Citrus Heights, Folsom, and surrounding communities.">
+    <title>Service Coverage Areas - TOW RIDERS Sacramento | (925) 546-9711</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #0B5394;
+            --secondary-blue: #1976D2;
+            --primary-red: #DC2626;
+            --success-green: #10B981;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-600: #4B5563;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-900);
+        }
+
+        /* Emergency Bar */
+        .emergency-bar {
+            background: var(--primary-red);
+            color: white;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .emergency-bar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--primary-red);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            color: var(--gray-900);
+            text-decoration: none;
+            padding: 0.625rem 1rem;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-blue);
+        }
+
+        .btn-driver {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            padding: 0.625rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-driver:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .btn-book {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 0.625rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
+            text-decoration: none;
+        }
+
+        .btn-book:hover {
+            background: #B91C1C;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero .lead {
+            font-size: 1.375rem;
+            margin-bottom: 0;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* Main Content */
+        .content-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Coverage Map */
+        .coverage-map {
+            background: var(--gray-50);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 5rem;
+            text-align: center;
+            border: 2px solid var(--gray-100);
+        }
+
+        .map-placeholder {
+            background: white;
+            border-radius: 16px;
+            padding: 4rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .map-placeholder i {
+            font-size: 5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .map-placeholder h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .map-placeholder p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+        }
+
+        .coverage-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            font-size: 1.125rem;
+            color: var(--gray-900);
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .coverage-note i {
+            color: var(--success-green);
+            font-size: 1.5rem;
+        }
+
+        /* City Cards Grid */
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .city-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .city-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            border-color: var(--primary-blue);
+        }
+
+        .city-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--gray-100);
+        }
+
+        .city-header h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .city-header h3 i {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+        }
+
+        .response-badge {
+            background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .neighborhoods {
+            margin-bottom: 1.5rem;
+        }
+
+        .neighborhoods h4 {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .neighborhoods ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .neighborhoods li {
+            color: var(--gray-600);
+            font-size: 0.9375rem;
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .neighborhoods li i {
+            color: var(--success-green);
+            font-size: 0.75rem;
+        }
+
+        .city-cta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--gray-100);
+        }
+
+        .btn {
+            padding: 0.875rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9375rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #B91C1C;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Trust Section */
+        .trust-section {
+            background: linear-gradient(135deg, var(--gray-900) 0%, #1f2937 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 5rem;
+        }
+
+        .trust-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .trust-section p {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .trust-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .trust-stat {
+            padding: 2rem;
+        }
+
+        .trust-stat i {
+            font-size: 3rem;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .trust-stat .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, white 0%, rgba(255,255,255,0.8) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .trust-stat .stat-label {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .lead {
+                font-size: 1.125rem;
+            }
+
+            .cities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .neighborhoods ul {
+                grid-template-columns: 1fr;
+            }
+
+            .city-cta {
+                flex-direction: column;
+            }
+
+            .trust-stats {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Emergency Bar -->
+    <div class="emergency-bar">
+        <i class="fas fa-phone-alt"></i> 24/7 EMERGENCY TOWING AVAILABLE - 
+        <a href="tel:9255469711"><strong>CALL (925) 546-9711</strong></a>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-truck"></i>
+                <span>TOW RIDERS</span>
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="quote.html">Get Instant Quote</a></li>
+                    <li><a href="service-areas.html" class="active">Service Areas</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="driver/login.html" class="btn-driver">Driver Login</a></li>
+                    <li><a href="quote.html" class="btn-book">Get Quote</a></li>
+                </ul>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Sacramento County Coverage</h1>
+            <p class="lead">Fast, reliable towing and roadside assistance across every community in Sacramento County. We're strategically positioned for rapid response to your location.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <!-- Coverage Map -->
+        <div class="coverage-map">
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt"></i>
+                <h3>Complete Sacramento County Coverage</h3>
+                <p>Our strategically positioned fleet ensures fast response times to every neighborhood, from downtown Sacramento to Folsom and everywhere in between.</p>
+            </div>
+            <div class="coverage-note">
+                <i class="fas fa-check-circle"></i>
+                <span>Serving a 30-mile radius across Sacramento County with 20-30 minute average response times</span>
+            </div>
+        </div>
+
+        <!-- Section Header -->
+        <div class="section-header">
+            <h2>Cities We Serve</h2>
+            <p>Professional towing and roadside assistance available 24/7 in these communities</p>
+        </div>
+
+        <!-- Cities Grid -->
+        <div class="cities-grid">
+            <!-- Sacramento -->
+            <div class="city-card">
+                <div class="city-header">
+                    <h3>
+                        <i class="fas fa-map-marker-alt"></i>
+                        Sacramento
+                    </h3>
+                    <div class="response-badge">
+                        <i class="fas fa-clock"></i> 20-30 min
+                    </div>
+                </div>
+                <div class="neighborhoods">
+                    <h4>Neighborhoods Covered</h4>
+                    <ul>
+                        <li><i class="fas fa-circle"></i> Downtown</li>
+                        <li><i class="fas fa-circle"></i> Midtown</li>
+                        <li><i class="fas fa-circle"></i> East Sacramento</li>
+                        <li><i class="fas fa-circle"></i> Land Park</li>
+                        <li><i class="fas fa-circle"></i> Pocket-Greenhaven</li>
+                        <li><i class="fas fa-circle"></i> North Sacramento</li>
+                        <li><i class="fas fa-circle"></i> South Sacramento</li>
+                        <li><i class="fas fa-circle"></i> Arden-Arcade</li>
+                    </ul>
+                </div>
+                <div class="city-cta">
+                    <a href="tel:9255469711" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="quote.html" class="btn btn-secondary">
+                        <i class="fas fa-calculator"></i> Get Quote
+                    </a>
+                </div>
+            </div>
+
+            <!-- Elk Grove -->
+            <div class="city-card">
+                <div class="city-header">
+                    <h3>
+                        <i class="fas fa-map-marker-alt"></i>
+                        Elk Grove
+                    </h3>
+                    <div class="response-badge">
+                        <i class="fas fa-clock"></i> 25-35 min
+                    </div>
+                </div>
+                <div class="neighborhoods">
+                    <h4>Neighborhoods Covered</h4>
+                    <ul>
+                        <li><i class="fas fa-circle"></i> Old Town Elk Grove</li>
+                        <li><i class="fas fa-circle"></i> Laguna Ridge</li>
+                        <li><i class="fas fa-circle"></i> Elk Grove South</li>
+                        <li><i class="fas fa-circle"></i> Laguna West</li>
+                        <li><i class="fas fa-circle"></i> Stonelake</li>
+                        <li><i class="fas fa-circle"></i> Franklin</li>
+                    </ul>
+                </div>
+                <div class="city-cta">
+                    <a href="tel:9255469711" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="quote.html" class="btn btn-secondary">
+                        <i class="fas fa-calculator"></i> Get Quote
+                    </a>
+                </div>
+            </div>
+
+            <!-- Rancho Cordova -->
+            <div class="city-card">
+                <div class="city-header">
+                    <h3>
+                        <i class="fas fa-map-marker-alt"></i>
+                        Rancho Cordova
+                    </h3>
+                    <div class="response-badge">
+                        <i class="fas fa-clock"></i> 25-35 min
+                    </div>
+                </div>
+                <div class="neighborhoods">
+                    <h4>Neighborhoods Covered</h4>
+                    <ul>
+                        <li><i class="fas fa-circle"></i> Anatolia</li>
+                        <li><i class="fas fa-circle"></i> Sunridge</li>
+                        <li><i class="fas fa-circle"></i> Mather Field</li>
+                        <li><i class="fas fa-circle"></i> Gold River</li>
+                        <li><i class="fas fa-circle"></i> Mills</li>
+                        <li><i class="fas fa-circle"></i> Cordova</li>
+                    </ul>
+                </div>
+                <div class="city-cta">
+                    <a href="tel:9255469711" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="quote.html" class="btn btn-secondary">
+                        <i class="fas fa-calculator"></i> Get Quote
+                    </a>
+                </div>
+            </div>
+
+            <!-- Citrus Heights -->
+            <div class="city-card">
+                <div class="city-header">
+                    <h3>
+                        <i class="fas fa-map-marker-alt"></i>
+                        Citrus Heights
+                    </h3>
+                    <div class="response-badge">
+                        <i class="fas fa-clock"></i> 25-35 min
+                    </div>
+                </div>
+                <div class="neighborhoods">
+                    <h4>Neighborhoods Covered</h4>
+                    <ul>
+                        <li><i class="fas fa-circle"></i> Rusch Park</li>
+                        <li><i class="fas fa-circle"></i> Sylvan Corners</li>
+                        <li><i class="fas fa-circle"></i> Mariposa</li>
+                        <li><i class="fas fa-circle"></i> Birdcage</li>
+                        <li><i class="fas fa-circle"></i> Auburn Boulevard</li>
+                        <li><i class="fas fa-circle"></i> Greenback</li>
+                    </ul>
+                </div>
+                <div class="city-cta">
+                    <a href="tel:9255469711" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="quote.html" class="btn btn-secondary">
+                        <i class="fas fa-calculator"></i> Get Quote
+                    </a>
+                </div>
+            </div>
+
+            <!-- Folsom -->
+            <div class="city-card">
+                <div class="city-header">
+                    <h3>
+                        <i class="fas fa-map-marker-alt"></i>
+                        Folsom
+                    </h3>
+                    <div class="response-badge">
+                        <i class="fas fa-clock"></i> 30-40 min
+                    </div>
+                </div>
+                <div class="neighborhoods">
+                    <h4>Neighborhoods Covered</h4>
+                    <ul>
+                        <li><i class="fas fa-circle"></i> Historic Folsom</li>
+                        <li><i class="fas fa-circle"></i> Folsom Ranch</li>
+                        <li><i class="fas fa-circle"></i> American River Canyon</li>
+                        <li><i class="fas fa-circle"></i> Empire Ranch</li>
+                        <li><i class="fas fa-circle"></i> Broadstone</li>
+                        <li><i class="fas fa-circle"></i> Lakeside</li>
+                    </ul>
+                </div>
+                <div class="city-cta">
+                    <a href="tel:9255469711" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="quote.html" class="btn btn-secondary">
+                        <i class="fas fa-calculator"></i> Get Quote
+                    </a>
+                </div>
+            </div>
+
+            <!-- Roseville -->
+            <div class="city-card">
+                <div class="city-header">
+                    <h3>
+                        <i class="fas fa-map-marker-alt"></i>
+                        Roseville
+                    </h3>
+                    <div class="response-badge">
+                        <i class="fas fa-clock"></i> 30-40 min
+                    </div>
+                </div>
+                <div class="neighborhoods">
+                    <h4>Neighborhoods Covered</h4>
+                    <ul>
+                        <li><i class="fas fa-circle"></i> Old Town Roseville</li>
+                        <li><i class="fas fa-circle"></i> West Roseville</li>
+                        <li><i class="fas fa-circle"></i> Fiddyment Farm</li>
+                        <li><i class="fas fa-circle"></i> Woodcreek</li>
+                        <li><i class="fas fa-circle"></i> Stanford Ranch</li>
+                        <li><i class="fas fa-circle"></i> Sun City</li>
+                    </ul>
+                </div>
+                <div class="city-cta">
+                    <a href="tel:9255469711" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="quote.html" class="btn btn-secondary">
+                        <i class="fas fa-calculator"></i> Get Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust Section -->
+        <div class="trust-section">
+            <h2>Why Sacramento Trusts TOW RIDERS</h2>
+            <p>Over a decade of professional service to Sacramento County communities</p>
+            <div class="trust-stats">
+                <div class="trust-stat">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Licensed & Insured</div>
+                </div>
+                <div class="trust-stat">
+                    <i class="fas fa-clock"></i>
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Always Available</div>
+                </div>
+                <div class="trust-stat">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Customers Served</div>
+                </div>
+                <div class="trust-stat">
+                    <i class="fas fa-star"></i>
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="quote.html">Get Quote & Book</a></li>
+                    <li><a href="service-areas.html">Service Areas</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="services.html">Emergency Towing</a></li>
+                    <li><a href="services.html">Flatbed Towing</a></li>
+                    <li><a href="services.html">Jump Start Service</a></li>
+                    <li><a href="services.html">Lockout Service</a></li>
+                    <li><a href="services.html">Tire Change</a></li>
+                    <li><a href="services.html">Fuel Delivery</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><i class="fas fa-phone"></i> <a href="tel:9255469711">(925) 546-9711</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> Sacramento County, CA</li>
+                    <li><i class="fas fa-clock"></i> 24/7 Emergency Service</li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:services@towriders.com">services@towriders.com</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TOW RIDERS. All rights reserved. | Licensed & Insured Towing Company</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

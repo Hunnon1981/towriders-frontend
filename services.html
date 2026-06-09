@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Tow Riders Sacramento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; }
+        
+        .emergency-bar {
+            background: #DC2626;
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            font-weight: 600;
+        }
+        .emergency-bar a { color: white; text-decoration: none; margin-left: 15px; }
+        
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0B5394;
+            text-decoration: none;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #0B5394 0%, #084070 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .services-section {
+            padding: 80px 20px;
+            background: #F9FAFB;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        .service-detail {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .service-detail i {
+            font-size: 3rem;
+            color: #0B5394;
+            margin-bottom: 20px;
+        }
+        .service-detail h2 {
+            color: #111827;
+            margin-bottom: 15px;
+        }
+        .service-detail p {
+            color: #6B7280;
+            margin-bottom: 20px;
+        }
+        .service-detail ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        .service-detail ul li {
+            padding: 8px 0;
+            color: #374151;
+        }
+        .service-detail ul li i {
+            color: #0B5394;
+            font-size: 1rem;
+            margin-right: 10px;
+        }
+        .btn-book {
+            background: #0B5394;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-book:hover {
+            background: #084070;
+        }
+        
+        .footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="emergency-bar">
+        🚨 24/7 Emergency Service Available
+        <a href="tel:9255469711"><i class="fas fa-phone"></i> (925) 546-9711</a>
+    </div>
+
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-truck"></i>
+                Tow Riders
+            </a>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Our Services</h1>
+        <p>Professional towing and roadside assistance 24/7</p>
+    </div>
+
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-detail">
+                    <i class="fas fa-truck"></i>
+                    <h2>Emergency Towing</h2>
+                    <p>Fast, reliable 24/7 emergency towing service throughout Sacramento and surrounding areas.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Quick response time</li>
+                        <li><i class="fas fa-check"></i> Safe vehicle transport</li>
+                        <li><i class="fas fa-check"></i> Professional drivers</li>
+                        <li><i class="fas fa-check"></i> All vehicle types</li>
+                    </ul>
+                    <a href="quote.html" class="btn-book">Get Quote</a>
+                </div>
+
+                <div class="service-detail">
+                    <i class="fas fa-car-battery"></i>
+                    <h2>Jump Start Service</h2>
+                    <p>Dead battery? We'll get you started and back on the road quickly.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Fast arrival</li>
+                        <li><i class="fas fa-check"></i> Professional equipment</li>
+                        <li><i class="fas fa-check"></i> Battery diagnostics</li>
+                        <li><i class="fas fa-check"></i> Available 24/7</li>
+                    </ul>
+                    <a href="quote.html" class="btn-book">Get Quote</a>
+                </div>
+
+                <div class="service-detail">
+                    <i class="fas fa-tire"></i>
+                    <h2>Tire Change</h2>
+                    <p>Flat tire? We'll change it on the spot so you can continue your journey.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Quick service</li>
+                        <li><i class="fas fa-check"></i> Professional tools</li>
+                        <li><i class="fas fa-check"></i> Spare tire installation</li>
+                        <li><i class="fas fa-check"></i> Safety inspection</li>
+                    </ul>
+                    <a href="quote.html" class="btn-book">Get Quote</a>
+                </div>
+
+                <div class="service-detail">
+                    <i class="fas fa-key"></i>
+                    <h2>Lockout Service</h2>
+                    <p>Locked out of your car? We'll help you get back in safely without damage.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Non-destructive entry</li>
+                        <li><i class="fas fa-check"></i> Quick response</li>
+                        <li><i class="fas fa-check"></i> Experienced technicians</li>
+                        <li><i class="fas fa-check"></i> All makes and models</li>
+                    </ul>
+                    <a href="quote.html" class="btn-book">Get Quote</a>
+                </div>
+
+                <div class="service-detail">
+                    <i class="fas fa-gas-pump"></i>
+                    <h2>Fuel Delivery</h2>
+                    <p>Ran out of gas? We'll bring fuel directly to your location.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Quick delivery</li>
+                        <li><i class="fas fa-check"></i> Quality fuel</li>
+                        <li><i class="fas fa-check"></i> Safe handling</li>
+                        <li><i class="fas fa-check"></i> Get back on the road fast</li>
+                    </ul>
+                    <a href="quote.html" class="btn-book">Get Quote</a>
+                </div>
+
+                <div class="service-detail">
+                    <i class="fas fa-wrench"></i>
+                    <h2>Roadside Assistance</h2>
+                    <p>Complete roadside assistance for all your emergency needs.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 24/7 availability</li>
+                        <li><i class="fas fa-check"></i> Multiple services</li>
+                        <li><i class="fas fa-check"></i> Professional support</li>
+                        <li><i class="fas fa-check"></i> Fast response</li>
+                    </ul>
+                    <a href="quote.html" class="btn-book">Get Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Tow Riders. All rights reserved.</p>
+        <p>Sacramento's Most Trusted Towing Service</p>
+    </footer>
+</body>
+</html>

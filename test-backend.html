@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend API Test - Tow Riders</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #dc2626;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            border-left: 4px solid #dc2626;
+        }
+        
+        .test-section h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .test-section p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        button {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #b91c1c;
+        }
+        
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            display: none;
+        }
+        
+        .result.success {
+            background: #d1fae5;
+            border: 1px solid #10b981;
+            color: #065f46;
+            display: block;
+        }
+        
+        .result.error {
+            background: #fee2e2;
+            border: 1px solid #dc2626;
+            color: #991b1b;
+            display: block;
+        }
+        
+        .result.loading {
+            background: #dbeafe;
+            border: 1px solid #3b82f6;
+            color: #1e40af;
+            display: block;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .status-badge.good {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-badge.bad {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .status-badge.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        code {
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .info-box {
+            background: #eff6ff;
+            border: 1px solid #3b82f6;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .info-box h3 {
+            color: #1e40af;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .info-box ul {
+            margin-left: 20px;
+            color: #1e3a8a;
+        }
+        
+        .info-box li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Tow Riders Backend API Test</h1>
+        <p class="subtitle">Use this page to test if your backend is working correctly</p>
+        
+        <div class="info-box">
+            <h3>📋 What This Page Tests:</h3>
+            <ul>
+                <li>Backend server health check</li>
+                <li>Email notification system (booking form)</li>
+                <li>API connectivity and response</li>
+                <li>Environment variables configuration</li>
+            </ul>
+        </div>
+        
+        <!-- Test 1: Health Check -->
+        <div class="test-section">
+            <h2>Test 1: Backend Health Check</h2>
+            <p>Tests if the backend server is running and accessible.</p>
+            <button onclick="testHealthCheck()">Run Test</button>
+            <div id="healthResult" class="result"></div>
+        </div>
+        
+        <!-- Test 2: Booking API -->
+        <div class="test-section">
+            <h2>Test 2: Booking API (Email Notification)</h2>
+            <p>Tests the booking endpoint and email notifications. <strong>Check your email after running this test!</strong></p>
+            <label style="display: block; margin-bottom: 10px;">
+                <strong>Your Email Address:</strong><br>
+                <input type="email" id="testEmail" placeholder="your-email@example.com" 
+                       style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-top: 5px;">
+            </label>
+            <button onclick="testBookingAPI()">Send Test Booking</button>
+            <div id="bookingResult" class="result"></div>
+        </div>
+        
+        <!-- Test 3: Contact API -->
+        <div class="test-section">
+            <h2>Test 3: Contact Form API</h2>
+            <p>Tests the contact form endpoint. An email should be sent to services@towriders.com</p>
+            <button onclick="testContactAPI()">Send Test Contact</button>
+            <div id="contactResult" class="result"></div>
+        </div>
+        
+        <!-- Status Summary -->
+        <div class="test-section" style="border-left-color: #3b82f6;">
+            <h2>📊 Status Summary</h2>
+            <p style="margin-bottom: 10px;">Backend Server: <span id="serverStatus" class="status-badge pending">Not Tested</span></p>
+            <p style="margin-bottom: 10px;">Booking API: <span id="bookingStatus" class="status-badge pending">Not Tested</span></p>
+            <p style="margin-bottom: 10px;">Contact API: <span id="contactStatus" class="status-badge pending">Not Tested</span></p>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = 'https://tow-riders-production.up.railway.app';
+        
+        // Test 1: Health Check
+        async function testHealthCheck() {
+            const btn = event.target;
+            const resultDiv = document.getElementById('healthResult');
+            const statusBadge = document.getElementById('serverStatus');
+            
+            btn.disabled = true;
+            btn.textContent = 'Testing...';
+            resultDiv.className = 'result loading';
+            resultDiv.textContent = '⏳ Connecting to backend...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ SUCCESS!\n\nStatus: ${response.status} OK\nResponse: ${JSON.stringify(data, null, 2)}\n\nBackend is running correctly!`;
+                    statusBadge.className = 'status-badge good';
+                    statusBadge.textContent = '✓ Working';
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ FAILED\n\nError: ${error.message}\n\nPossible issues:\n- Backend is not deployed\n- Backend URL is incorrect\n- Network connection problem\n\nBackend URL: ${API_BASE}`;
+                statusBadge.className = 'status-badge bad';
+                statusBadge.textContent = '✗ Failed';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Run Test';
+            }
+        }
+        
+        // Test 2: Booking API
+        async function testBookingAPI() {
+            const btn = event.target;
+            const resultDiv = document.getElementById('bookingResult');
+            const statusBadge = document.getElementById('bookingStatus');
+            const emailInput = document.getElementById('testEmail');
+            
+            if (!emailInput.value || !emailInput.value.includes('@')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            resultDiv.className = 'result loading';
+            resultDiv.textContent = '⏳ Submitting test booking...';
+            
+            const testData = {
+                service: 'Emergency Towing',
+                pickupAddress: 'Sacramento, CA',
+                dropoffAddress: 'Elk Grove, CA',
+                vehicleMake: 'Toyota',
+                vehicleModel: 'Camry',
+                vehicleYear: '2020',
+                customerName: 'Test Customer',
+                phone: '(925) 546-9711',
+                email: emailInput.value,
+                notes: 'This is a TEST booking from the API test page'
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/booking`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ SUCCESS!\n\nBooking ID: ${data.bookingId}\nMessage: ${data.message}\n\n📧 CHECK YOUR EMAIL:\n- services@towriders.com (business notification)\n- ${emailInput.value} (customer confirmation)\n\nIf no email arrives within 2 minutes:\n1. Check spam folder\n2. Check Railway logs for errors\n3. Verify RESEND_API_KEY is set\n4. Verify domain is verified in Resend`;
+                    statusBadge.className = 'status-badge good';
+                    statusBadge.textContent = '✓ Working';
+                } else {
+                    throw new Error(data.message || 'Unknown error');
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ FAILED\n\nError: ${error.message}\n\nPossible issues:\n- Backend not responding\n- RESEND_API_KEY not set in Railway\n- Domain not verified in Resend\n- Network error\n\nCheck Railway logs for details.`;
+                statusBadge.className = 'status-badge bad';
+                statusBadge.textContent = '✗ Failed';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Send Test Booking';
+            }
+        }
+        
+        // Test 3: Contact API
+        async function testContactAPI() {
+            const btn = event.target;
+            const resultDiv = document.getElementById('contactResult');
+            const statusBadge = document.getElementById('contactStatus');
+            
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            resultDiv.className = 'result loading';
+            resultDiv.textContent = '⏳ Submitting test contact form...';
+            
+            const testData = {
+                name: 'Test User',
+                email: 'test@example.com',
+                phone: '(925) 546-9711',
+                subject: 'API Test',
+                message: 'This is a TEST message from the API test page'
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/contact`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ SUCCESS!\n\nMessage: ${data.message}\n\n📧 CHECK services@towriders.com for the contact form email.\n\nIf no email arrives:\n1. Check spam folder\n2. Check Railway logs\n3. Verify RESEND_API_KEY configuration`;
+                    statusBadge.className = 'status-badge good';
+                    statusBadge.textContent = '✓ Working';
+                } else {
+                    throw new Error(data.message || 'Unknown error');
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ FAILED\n\nError: ${error.message}\n\nPossible issues:\n- Backend not responding\n- Email service not configured\n- Network error`;
+                statusBadge.className = 'status-badge bad';
+                statusBadge.textContent = '✗ Failed';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Send Test Contact';
+            }
+        }
+    </script>
+</body>
+</html>

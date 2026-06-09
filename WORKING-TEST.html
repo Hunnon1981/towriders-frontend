@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distance Calculator - Test Version</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #dc2626;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        .alert-box {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .alert-box h3 {
+            color: #92400e;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        .alert-box ol {
+            margin-left: 20px;
+            color: #78350f;
+            line-height: 1.8;
+        }
+        .alert-box strong {
+            color: #dc2626;
+        }
+        
+        .service-tiles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .service-tile {
+            background: white;
+            border: 3px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .service-tile:hover {
+            border-color: #dc2626;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(220, 38, 38, 0.2);
+        }
+        .service-tile.selected {
+            border-color: #dc2626;
+            background: #fef2f2;
+            box-shadow: 0 8px 16px rgba(220, 38, 38, 0.3);
+        }
+        .service-tile i {
+            font-size: 2.5rem;
+            color: #dc2626;
+            margin-bottom: 10px;
+        }
+        .service-tile .title {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.95rem;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f2937;
+            font-size: 1rem;
+        }
+        .input-wrapper {
+            position: relative;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        input:focus {
+            outline: none;
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+        
+        .autocomplete-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #dc2626;
+            border-radius: 10px;
+            margin-top: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .autocomplete-dropdown.show {
+            display: block;
+        }
+        .autocomplete-item {
+            padding: 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+            transition: background 0.2s;
+        }
+        .autocomplete-item:hover {
+            background: #fef2f2;
+        }
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+        .item-name {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+        .item-address {
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        .status-message {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            display: none;
+        }
+        .status-message.show {
+            display: block;
+        }
+        .status-message.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #10b981;
+        }
+        .status-message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #dc2626;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            margin-bottom: 15px;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4);
+        }
+        .btn-calculate {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+        }
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .price-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 3px solid #dc2626;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        .price-box h2 {
+            color: #1f2937;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        .price-total {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #dc2626;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .price-breakdown {
+            border-top: 2px solid #dc2626;
+            padding-top: 20px;
+        }
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        .price-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+        .price-value {
+            color: #1f2937;
+            font-weight: 700;
+        }
+        
+        .debug-panel {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            font-family: 'Courier New', monospace;
+        }
+        .debug-title {
+            font-weight: 700;
+            color: #dc2626;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .debug-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .debug-label {
+            color: #6b7280;
+        }
+        .debug-value {
+            color: #059669;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚗 Distance Calculator</h1>
+        <p class="subtitle">Complete Working Test Version</p>
+        
+        <div class="alert-box">
+            <h3>📝 How to Use:</h3>
+            <ol>
+                <li>Click a <strong>Service Tile</strong> below (try "Towing Drivable")</li>
+                <li>Type "<strong>sacramento</strong>" in Pickup → Click address from dropdown</li>
+                <li>Type "<strong>elk grove</strong>" in Dropoff → Click address from dropdown</li>
+                <li>Click the <strong>BLUE "Calculate Distance"</strong> button</li>
+                <li>Watch distance and price update automatically! ✅</li>
+            </ol>
+        </div>
+        
+        <!-- Service Selection -->
+        <div class="service-tiles">
+            <div class="service-tile" data-service="towing_drivable" data-base="100" data-permile="5.5">
+                <i class="fas fa-car"></i>
+                <div class="title">Towing<br>Drivable</div>
+            </div>
+            <div class="service-tile" data-service="towing_nondrivable" data-base="125" data-permile="6.0">
+                <i class="fas fa-truck-pickup"></i>
+                <div class="title">Towing<br>Non-Drivable</div>
+            </div>
+            <div class="service-tile" data-service="jump_start" data-base="85" data-permile="0">
+                <i class="fas fa-bolt"></i>
+                <div class="title">Jump<br>Start</div>
+            </div>
+        </div>
+        
+        <!-- Pickup Location -->
+        <div class="form-group">
+            <label for="pickup">🅰️ Pickup Location</label>
+            <div class="input-wrapper">
+                <input type="text" id="pickup" placeholder="Type: sacramento">
+                <div id="pickup-dropdown" class="autocomplete-dropdown"></div>
+            </div>
+            <div id="pickup-status" class="status-message"></div>
+        </div>
+        
+        <!-- Dropoff Location -->
+        <div class="form-group">
+            <label for="dropoff">🅱️ Dropoff Location</label>
+            <div class="input-wrapper">
+                <input type="text" id="dropoff" placeholder="Type: elk grove">
+                <div id="dropoff-dropdown" class="autocomplete-dropdown"></div>
+            </div>
+            <div id="dropoff-status" class="status-message"></div>
+        </div>
+        
+        <!-- Distance -->
+        <div class="form-group">
+            <label for="distance">📏 Distance (miles)</label>
+            <input type="number" id="distance" value="0" readonly style="background: #f9fafb; font-weight: 700; font-size: 1.2rem; color: #dc2626;">
+            <button class="btn btn-calculate" onclick="calculateDistance()" style="margin-top: 15px;">
+                🔄 CALCULATE DISTANCE NOW
+            </button>
+            <div id="distance-status" class="status-message"></div>
+        </div>
+        
+        <!-- Price Panel -->
+        <div class="price-box">
+            <h2>💰 Estimated Total</h2>
+            <div class="price-total" id="total">$0</div>
+            <div class="price-breakdown">
+                <div class="price-item">
+                    <span class="price-label">Base Fee:</span>
+                    <span class="price-value" id="base">$0</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-label">Distance Fee:</span>
+                    <span class="price-value" id="distFee">$0</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-label"><strong>TOTAL:</strong></span>
+                    <span class="price-value" id="totalBottom">$0</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Debug Panel -->
+        <div class="debug-panel">
+            <div class="debug-title">🐛 DEBUG INFO (Live)</div>
+            <div class="debug-row">
+                <span class="debug-label">Service Selected:</span>
+                <span class="debug-value" id="debug-service">None</span>
+            </div>
+            <div class="debug-row">
+                <span class="debug-label">Pickup Coords:</span>
+                <span class="debug-value" id="debug-pickup">None</span>
+            </div>
+            <div class="debug-row">
+                <span class="debug-label">Dropoff Coords:</span>
+                <span class="debug-value" id="debug-dropoff">None</span>
+            </div>
+            <div class="debug-row">
+                <span class="debug-label">Distance:</span>
+                <span class="debug-value" id="debug-distance">0 miles</span>
+            </div>
+            <div class="debug-row">
+                <span class="debug-label">Base Price:</span>
+                <span class="debug-value" id="debug-base">$0</span>
+            </div>
+            <div class="debug-row">
+                <span class="debug-label">Total Price:</span>
+                <span class="debug-value" id="debug-total">$0</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Global state
+        let selectedService = null;
+        let baseFee = 0;
+        let perMile = 0;
+        let pickupCoords = null;
+        let dropoffCoords = null;
+        
+        // Update debug panel
+        function updateDebug() {
+            document.getElementById('debug-service').textContent = selectedService || 'None';
+            document.getElementById('debug-pickup').textContent = pickupCoords ? 
+                `${pickupCoords.lat.toFixed(4)}, ${pickupCoords.lng.toFixed(4)}` : 'None';
+            document.getElementById('debug-dropoff').textContent = dropoffCoords ? 
+                `${dropoffCoords.lat.toFixed(4)}, ${dropoffCoords.lng.toFixed(4)}` : 'None';
+            document.getElementById('debug-distance').textContent = document.getElementById('distance').value + ' miles';
+            document.getElementById('debug-base').textContent = '$' + baseFee;
+            document.getElementById('debug-total').textContent = document.getElementById('total').textContent;
+        }
+        
+        // Show status message
+        function showStatus(elementId, message, type) {
+            const el = document.getElementById(elementId);
+            el.textContent = message;
+            el.className = 'status-message show ' + type;
+        }
+        
+        // Hide status message
+        function hideStatus(elementId) {
+            document.getElementById(elementId).className = 'status-message';
+        }
+        
+        // Calculate distance (Haversine formula)
+        function haversineDistance(lat1, lon1, lat2, lon2) {
+            const R = 3959; // Earth radius in miles
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+        
+        // Calculate distance button clicked
+        function calculateDistance() {
+            console.log('🔘 Calculate button clicked');
+            
+            if (!selectedService) {
+                alert('⚠️ Please select a SERVICE first!\n\nClick one of the service tiles at the top.');
+                return;
+            }
+            
+            if (!pickupCoords) {
+                alert('⚠️ Please select PICKUP location!\n\n1. Type "sacramento" in Pickup field\n2. Click an address from dropdown');
+                return;
+            }
+            
+            if (!dropoffCoords) {
+                alert('⚠️ Please select DROPOFF location!\n\n1. Type "elk grove" in Dropoff field\n2. Click an address from dropdown');
+                return;
+            }
+            
+            // Calculate distance
+            const distance = haversineDistance(
+                pickupCoords.lat,
+                pickupCoords.lng,
+                dropoffCoords.lat,
+                dropoffCoords.lng
+            );
+            
+            console.log('✅ Distance calculated:', distance.toFixed(1), 'miles');
+            
+            // Update distance field
+            document.getElementById('distance').value = distance.toFixed(1);
+            
+            // Show success message
+            showStatus('distance-status', 
+                `✅ Distance: ${distance.toFixed(1)} miles calculated successfully!`, 
+                'success');
+            
+            // Calculate price
+            const distanceFee = distance * perMile;
+            const total = baseFee + distanceFee;
+            
+            // Update price display
+            document.getElementById('base').textContent = '$' + baseFee;
+            document.getElementById('distFee').textContent = '$' + distanceFee.toFixed(2);
+            document.getElementById('total').textContent = '$' + total.toFixed(2);
+            document.getElementById('totalBottom').textContent = '$' + total.toFixed(2);
+            
+            // Update debug
+            updateDebug();
+            
+            console.log('💰 Price updated:', '$' + total.toFixed(2));
+        }
+        
+        // Service tile selection
+        document.querySelectorAll('.service-tile').forEach(tile => {
+            tile.addEventListener('click', function() {
+                // Remove previous selection
+                document.querySelectorAll('.service-tile').forEach(t => t.classList.remove('selected'));
+                
+                // Add selection
+                this.classList.add('selected');
+                
+                // Store service info
+                selectedService = this.dataset.service;
+                baseFee = parseFloat(this.dataset.base);
+                perMile = parseFloat(this.dataset.permile);
+                
+                console.log('✅ Service selected:', selectedService, 'Base:', baseFee, 'Per mile:', perMile);
+                
+                // Update price immediately
+                document.getElementById('base').textContent = '$' + baseFee;
+                document.getElementById('total').textContent = '$' + baseFee;
+                document.getElementById('totalBottom').textContent = '$' + baseFee;
+                
+                updateDebug();
+            });
+        });
+        
+        // Search addresses
+        async function searchAddress(query, type) {
+            if (query.length < 3) return;
+            
+            const dropdown = document.getElementById(type + '-dropdown');
+            
+            console.log('🔍 Searching:', query);
+            
+            try {
+                const response = await fetch(
+                    `https://nominatim.openstreetmap.org/search?` +
+                    `q=${encodeURIComponent(query)},California,USA&` +
+                    `format=json&limit=5&countrycodes=us`
+                );
+                
+                const results = await response.json();
+                console.log('  Found:', results.length, 'results');
+                
+                if (results.length === 0) {
+                    dropdown.innerHTML = '<div class="autocomplete-item"><div class="item-name">No results found</div></div>';
+                    dropdown.classList.add('show');
+                    return;
+                }
+                
+                // Clear dropdown
+                dropdown.innerHTML = '';
+                
+                // Add results
+                results.forEach(result => {
+                    const item = document.createElement('div');
+                    item.className = 'autocomplete-item';
+                    item.innerHTML = `
+                        <div class="item-name">${result.display_name.split(',')[0]}</div>
+                        <div class="item-address">${result.display_name}</div>
+                    `;
+                    
+                    item.addEventListener('click', function() {
+                        console.log('✅ Address selected:', result.display_name);
+                        
+                        // Fill input
+                        document.getElementById(type).value = result.display_name;
+                        
+                        // Store coordinates
+                        const coords = {
+                            lat: parseFloat(result.lat),
+                            lng: parseFloat(result.lon)
+                        };
+                        
+                        if (type === 'pickup') {
+                            pickupCoords = coords;
+                            showStatus('pickup-status', '✅ Pickup location selected', 'success');
+                            console.log('  Stored pickup coords:', coords);
+                        } else {
+                            dropoffCoords = coords;
+                            showStatus('dropoff-status', '✅ Dropoff location selected', 'success');
+                            console.log('  Stored dropoff coords:', coords);
+                        }
+                        
+                        // Hide dropdown
+                        dropdown.classList.remove('show');
+                        
+                        // Update debug
+                        updateDebug();
+                    });
+                    
+                    dropdown.appendChild(item);
+                });
+                
+                dropdown.classList.add('show');
+                
+            } catch (error) {
+                console.error('❌ Search error:', error);
+            }
+        }
+        
+        // Setup input listeners
+        let pickupTimeout, dropoffTimeout;
+        
+        document.getElementById('pickup').addEventListener('input', function(e) {
+            clearTimeout(pickupTimeout);
+            pickupTimeout = setTimeout(() => {
+                searchAddress(e.target.value, 'pickup');
+            }, 500);
+        });
+        
+        document.getElementById('dropoff').addEventListener('input', function(e) {
+            clearTimeout(dropoffTimeout);
+            dropoffTimeout = setTimeout(() => {
+                searchAddress(e.target.value, 'dropoff');
+            }, 500);
+        });
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.input-wrapper')) {
+                document.querySelectorAll('.autocomplete-dropdown').forEach(d => {
+                    d.classList.remove('show');
+                });
+            }
+        });
+        
+        // Initialize
+        console.log('🚀 Distance Calculator Ready!');
+        console.log('📝 Follow the instructions in the yellow box above');
+        updateDebug();
+    </script>
+</body>
+</html>

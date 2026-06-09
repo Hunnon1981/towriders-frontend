@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - Tow Riders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --red: #dc2626;
+            --red-dark: #b91c1c;
+            --red-light: #fef2f2;
+            --bg: #f9fafb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --success-light: #d1fae5;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        header { background: var(--card); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .header-content { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--red); text-decoration: none; }
+        
+        .container { max-width: 900px; margin: 2rem auto; padding: 0 2rem; }
+        
+        .progress-bar { display: flex; justify-content: space-between; margin-bottom: 2rem; position: relative; }
+        .progress-bar::before { content: ''; position: absolute; top: 20px; left: 0; right: 0; height: 2px; background: var(--success); z-index: 0; }
+        .progress-step { position: relative; z-index: 1; text-align: center; flex: 1; }
+        .step-circle { width: 40px; height: 40px; border-radius: 50%; background: var(--success); color: white; border: 2px solid var(--success); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-weight: 600; }
+        .step-label { font-size: 0.875rem; color: var(--success); font-weight: 600; }
+        
+        .confirmation-card { background: var(--card); border-radius: 12px; padding: 3rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center; }
+        
+        .success-icon { width: 80px; height: 80px; background: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; animation: scaleIn 0.5s ease; }
+        .success-icon i { font-size: 2.5rem; color: white; }
+        
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 { font-size: 2.5rem; color: var(--success); margin-bottom: 0.5rem; }
+        .subtitle { font-size: 1.125rem; color: var(--text-light); margin-bottom: 2rem; }
+        
+        .booking-id { background: var(--success-light); padding: 1rem 1.5rem; border-radius: 8px; display: inline-block; margin-bottom: 2rem; border: 2px dashed var(--success); }
+        .booking-id strong { color: var(--success); font-size: 1.25rem; }
+        
+        .details-section { text-align: left; margin: 2rem 0; padding: 2rem; background: var(--bg); border-radius: 8px; }
+        .details-section h2 { font-size: 1.25rem; margin-bottom: 1rem; color: var(--text); }
+        
+        .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-label { color: var(--text-light); font-weight: 500; }
+        .detail-value { color: var(--text); font-weight: 600; }
+        
+        .next-steps { background: #eff6ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3b82f6; margin: 2rem 0; text-align: left; }
+        .next-steps h3 { color: #1e40af; margin-bottom: 1rem; }
+        .next-steps ul { margin-left: 1.5rem; }
+        .next-steps li { margin-bottom: 0.5rem; color: #1f2937; }
+        
+        .contact-box { background: var(--red-light); padding: 1.5rem; border-radius: 8px; margin: 2rem 0; }
+        .contact-box h3 { color: var(--red); margin-bottom: 0.5rem; }
+        .contact-box p { margin: 0.5rem 0; }
+        .contact-box a { color: var(--red); text-decoration: none; font-weight: 600; }
+        
+        .button-group { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center; }
+        .btn { padding: 1rem 2rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-primary { background: var(--red); color: white; }
+        .btn-primary:hover { background: var(--red-dark); }
+        .btn-secondary { background: white; color: var(--text); border: 2px solid var(--border); }
+        .btn-secondary:hover { border-color: var(--red); color: var(--red); }
+        
+        @media print {
+            .button-group, header { display: none; }
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            .confirmation-card { padding: 2rem 1rem; }
+            h1 { font-size: 2rem; }
+            .button-group { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Tow Riders</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress-step">
+                <div class="step-circle">✓</div>
+                <div class="step-label">Quote</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-circle">✓</div>
+                <div class="step-label">Review</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-circle">✓</div>
+                <div class="step-label">Payment</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-circle">✓</div>
+                <div class="step-label">Confirmed</div>
+            </div>
+        </div>
+        
+        <div class="confirmation-card">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            
+            <h1>Booking Confirmed!</h1>
+            <p class="subtitle">Your tow truck is on the way. We'll contact you shortly.</p>
+            
+            <div class="booking-id">
+                <div style="color: var(--text-light); font-size: 0.875rem; margin-bottom: 0.25rem;">Your Booking ID</div>
+                <strong id="confirmationId">-</strong>
+            </div>
+            
+            <div class="details-section">
+                <h2>Booking Details</h2>
+                <div class="detail-row">
+                    <span class="detail-label">Service:</span>
+                    <span class="detail-value" id="confirmService">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Customer:</span>
+                    <span class="detail-value" id="confirmName">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Phone:</span>
+                    <span class="detail-value" id="confirmPhone">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Pickup Location:</span>
+                    <span class="detail-value" id="confirmPickup">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Drop-off Location:</span>
+                    <span class="detail-value" id="confirmDropoff">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Vehicle:</span>
+                    <span class="detail-value" id="confirmVehicle">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value" id="confirmDistance">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Payment Method:</span>
+                    <span class="detail-value" id="confirmPayment">-</span>
+                </div>
+                <div class="detail-row" style="font-size: 1.25rem; padding-top: 1rem; margin-top: 1rem; border-top: 2px solid var(--border);">
+                    <span class="detail-label" style="color: var(--red);">Total Amount:</span>
+                    <span class="detail-value" style="color: var(--red);" id="confirmTotal">-</span>
+                </div>
+            </div>
+            
+            <div class="next-steps">
+                <h3><i class="fas fa-clipboard-list"></i> What Happens Next?</h3>
+                <ul>
+                    <li><strong>Step 1:</strong> We'll call you within 2-3 minutes to confirm your location</li>
+                    <li><strong>Step 2:</strong> A professional driver will be dispatched immediately</li>
+                    <li><strong>Step 3:</strong> Average arrival time: <strong>20 minutes</strong></li>
+                    <li><strong>Step 4:</strong> You'll receive a call when the driver is 5 minutes away</li>
+                </ul>
+            </div>
+            
+            <div class="contact-box">
+                <h3><i class="fas fa-headset"></i> Need Immediate Assistance?</h3>
+                <p>Call us 24/7 at: <a href="tel:9255469711"><strong>(925) 546-9711</strong></a></p>
+                <p style="font-size: 0.875rem; margin-top: 0.5rem;">Reference your Booking ID: <strong id="confirmationId2">-</strong></p>
+            </div>
+            
+            <div class="button-group">
+                <a href="index.html" class="btn btn-secondary">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <button onclick="window.print()" class="btn btn-secondary">
+                    <i class="fas fa-print"></i> Print Confirmation
+                </button>
+                <a href="quote.html" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Book Another Service
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const confirmationData = JSON.parse(sessionStorage.getItem('confirmationData') || '{}');
+        
+        // Redirect if no confirmation data
+        if (!confirmationData.bookingId) {
+            window.location.href = 'quote.html';
+        }
+        
+        // Display confirmation details
+        document.getElementById('confirmationId').textContent = confirmationData.bookingId || '-';
+        document.getElementById('confirmationId2').textContent = confirmationData.bookingId || '-';
+        document.getElementById('confirmService').textContent = confirmationData.serviceName || '-';
+        document.getElementById('confirmName').textContent = confirmationData.customerName || '-';
+        document.getElementById('confirmPhone').textContent = confirmationData.phone || '-';
+        document.getElementById('confirmPickup').textContent = confirmationData.pickup || '-';
+        document.getElementById('confirmDropoff').textContent = confirmationData.dropoff || 'Same as pickup';
+        
+        const vehicle = `${confirmationData.vehicleYear} ${confirmationData.vehicleMake} ${confirmationData.vehicleModel}`;
+        document.getElementById('confirmVehicle').textContent = vehicle;
+        document.getElementById('confirmDistance').textContent = confirmationData.distance + ' miles' || '-';
+        
+        const paymentMethod = confirmationData.paymentMethod === 'cash' ? 'Cash on Arrival' : 'Credit Card (Paid)';
+        document.getElementById('confirmPayment').textContent = paymentMethod;
+        
+        document.getElementById('confirmTotal').textContent = '$' + (confirmationData.pricing?.total || 0);
+        
+        // Clear session storage after displaying
+        setTimeout(() => {
+            // Keep data for print but allow new bookings
+        }, 1000);
+        
+        // Send confirmation email (optional - if backend supports it)
+        if (confirmationData.email) {
+            // You can add email notification here
+        }
+    </script>
+</body>
+</html>

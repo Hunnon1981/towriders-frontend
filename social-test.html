@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Testing - Tow Riders</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .status.disabled {
+            background: #fee;
+            color: #c33;
+        }
+
+        .status.enabled {
+            background: #efe;
+            color: #3c3;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 20px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #f56565;
+            color: white;
+        }
+
+        .btn-info {
+            background: #4299e1;
+            color: white;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .response {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .response.success {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+            color: #166534;
+        }
+
+        .response.error {
+            background: #fef2f2;
+            border: 2px solid #fca5a5;
+            color: #991b1b;
+        }
+
+        .response.info {
+            background: #eff6ff;
+            border: 2px solid #93c5fd;
+            color: #1e40af;
+        }
+
+        .config-item {
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .config-label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .config-value {
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .config-value.yes {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .config-value.no {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .warning {
+            background: #fef3c7;
+            border: 2px solid #fbbf24;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #92400e;
+        }
+
+        .warning strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .drafts-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .draft-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .draft-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .draft-id {
+            font-family: monospace;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .draft-platform {
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .draft-message {
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .draft-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .draft-actions button {
+            padding: 6px 12px;
+            font-size: 12px;
+            min-width: auto;
+            flex: none;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🚀 Tow Riders Social Media Testing</h1>
+            <p>Test social media automation safely before going live</p>
+            <div id="statusBadge"></div>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ IMPORTANT SAFETY NOTICE</strong>
+            Social media automation is <strong>DISABLED by default</strong>. Draft mode is safe and will NOT publish posts to Facebook or Instagram. To enable live posting, configure all environment variables in Railway.
+        </div>
+
+        <div class="grid">
+            <!-- Configuration Status -->
+            <div class="card">
+                <h2>📊 Configuration Status</h2>
+                <button class="btn-info" onclick="checkConfig()" style="width: 100%; margin-bottom: 20px;">
+                    Check Configuration
+                </button>
+                <div id="configStatus"></div>
+            </div>
+
+            <!-- Account Info -->
+            <div class="card">
+                <h2>🔗 Account Connection</h2>
+                <button class="btn-info" onclick="checkFacebookPage()" style="width: 100%; margin-bottom: 10px;">
+                    Test Facebook Connection
+                </button>
+                <button class="btn-info" onclick="checkInstagramAccount()" style="width: 100%; margin-bottom: 20px;">
+                    Test Instagram Connection
+                </button>
+                <div id="accountInfo"></div>
+            </div>
+        </div>
+
+        <!-- Create Draft -->
+        <div class="card">
+            <h2>📝 Create Draft Post (Safe - No Publishing)</h2>
+            
+            <div class="form-group">
+                <label for="platform">Platform</label>
+                <select id="platform">
+                    <option value="facebook">Facebook Only</option>
+                    <option value="instagram">Instagram Only</option>
+                    <option value="both">Both (Facebook + Instagram)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message / Caption</label>
+                <textarea id="message" placeholder="Enter your post message here...">🚨 Emergency Towing Available 24/7!
+
+Stranded on the highway? Don't panic! Tow Riders is here to help.
+
+✅ 15-minute response time
+✅ Professional service
+✅ Upfront pricing
+✅ All Sacramento area
+
+Call now: (925) 546-9711
+
+#TowRiders #SacramentoTowing #EmergencyTowing #24HourTowing</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="imageUrl">Image URL (Optional - must be publicly accessible)</label>
+                <input type="text" id="imageUrl" placeholder="https://example.com/image.jpg" value="">
+            </div>
+
+            <div class="form-group">
+                <label for="link">Link (Optional - Facebook only)</label>
+                <input type="text" id="link" placeholder="https://towriders.com" value="https://towriders.com">
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" onclick="createDraft()">Create Draft</button>
+                <button class="btn-secondary" onclick="validatePost()">Validate Only</button>
+                <button class="btn-danger" onclick="testLivePost()">⚠️ Test Live Post</button>
+            </div>
+
+            <div id="draftResponse"></div>
+        </div>
+
+        <!-- Drafts List -->
+        <div class="card">
+            <h2>📑 Draft Posts</h2>
+            <button class="btn-info" onclick="loadDrafts()" style="width: 100%; margin-bottom: 20px;">
+                Refresh Drafts List
+            </button>
+            <div id="draftsList" class="drafts-list"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = '/api/social';
+
+        // Check configuration status
+        async function checkConfig() {
+            const statusDiv = document.getElementById('configStatus');
+            statusDiv.innerHTML = '<p style="color: #666;">Loading...</p>';
+
+            try {
+                const response = await fetch(`${API_URL}/config`);
+                const data = await response.json();
+
+                let html = '';
+                
+                // Automation status
+                html += `<div class="config-item">
+                    <span class="config-label">Automation Enabled</span>
+                    <span class="config-value ${data.config.automationEnabled ? 'yes' : 'no'}">
+                        ${data.config.automationEnabled ? '✅ YES' : '❌ NO'}
+                    </span>
+                </div>`;
+
+                // Access token
+                html += `<div class="config-item">
+                    <span class="config-label">Access Token</span>
+                    <span class="config-value ${data.config.hasAccessToken ? 'yes' : 'no'}">
+                        ${data.config.hasAccessToken ? '✅ SET' : '❌ MISSING'}
+                    </span>
+                </div>`;
+
+                // Facebook Page ID
+                html += `<div class="config-item">
+                    <span class="config-label">Facebook Page ID</span>
+                    <span class="config-value ${data.config.hasFacebookPageId ? 'yes' : 'no'}">
+                        ${data.config.hasFacebookPageId ? '✅ SET' : '❌ MISSING'}
+                    </span>
+                </div>`;
+
+                // Instagram Account ID
+                html += `<div class="config-item">
+                    <span class="config-label">Instagram Account ID</span>
+                    <span class="config-value ${data.config.hasInstagramAccountId ? 'yes' : 'no'}">
+                        ${data.config.hasInstagramAccountId ? '✅ SET' : '❌ MISSING'}
+                    </span>
+                </div>`;
+
+                // Errors
+                if (data.errors && data.errors.length > 0) {
+                    html += '<div class="response error" style="margin-top: 15px;">';
+                    html += '<strong>Configuration Issues:</strong>\n\n';
+                    data.errors.forEach(error => {
+                        html += `• ${error}\n`;
+                    });
+                    html += '</div>';
+                }
+
+                statusDiv.innerHTML = html;
+
+                // Update status badge
+                const badge = document.getElementById('statusBadge');
+                badge.innerHTML = `<div class="status ${data.enabled ? 'enabled' : 'disabled'}">
+                    ${data.enabled ? '✅ AUTOMATION ENABLED' : '❌ AUTOMATION DISABLED'}
+                </div>`;
+
+            } catch (error) {
+                statusDiv.innerHTML = `<div class="response error">Error: ${error.message}</div>`;
+            }
+        }
+
+        // Check Facebook Page
+        async function checkFacebookPage() {
+            const infoDiv = document.getElementById('accountInfo');
+            infoDiv.innerHTML = '<p style="color: #666;">Testing Facebook connection...</p>';
+
+            try {
+                const response = await fetch(`${API_URL}/accounts/facebook`);
+                const data = await response.json();
+
+                if (data.success) {
+                    infoDiv.innerHTML = `<div class="response success">
+<strong>Facebook Page Connected!</strong>
+
+Name: ${data.page.name}
+Username: @${data.page.username || 'N/A'}
+Page ID: ${data.page.id}
+Followers: ${data.page.followers_count || 'N/A'}
+                    </div>`;
+                } else {
+                    infoDiv.innerHTML = `<div class="response error">${data.error}</div>`;
+                }
+            } catch (error) {
+                infoDiv.innerHTML = `<div class="response error">Error: ${error.message}</div>`;
+            }
+        }
+
+        // Check Instagram Account
+        async function checkInstagramAccount() {
+            const infoDiv = document.getElementById('accountInfo');
+            infoDiv.innerHTML = '<p style="color: #666;">Testing Instagram connection...</p>';
+
+            try {
+                const response = await fetch(`${API_URL}/accounts/instagram`);
+                const data = await response.json();
+
+                if (data.success) {
+                    infoDiv.innerHTML = `<div class="response success">
+<strong>Instagram Account Connected!</strong>
+
+Username: @${data.account.username}
+Name: ${data.account.name}
+Account ID: ${data.account.id}
+Followers: ${data.account.followers_count || 'N/A'}
+Posts: ${data.account.media_count || 'N/A'}
+                    </div>`;
+                } else {
+                    infoDiv.innerHTML = `<div class="response error">${data.error}</div>`;
+                }
+            } catch (error) {
+                infoDiv.innerHTML = `<div class="response error">Error: ${error.message}</div>`;
+            }
+        }
+
+        // Create draft
+        async function createDraft() {
+            const responseDiv = document.getElementById('draftResponse');
+            responseDiv.innerHTML = '<div class="response info">Creating draft...</div>';
+
+            const platform = document.getElementById('platform').value;
+            const message = document.getElementById('message').value;
+            const imageUrl = document.getElementById('imageUrl').value;
+            const link = document.getElementById('link').value;
+
+            try {
+                const response = await fetch(`${API_URL}/test-draft`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ platform, message, imageUrl, link, caption: message })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    responseDiv.innerHTML = `<div class="response success">${JSON.stringify(data, null, 2)}</div>`;
+                    loadDrafts(); // Refresh drafts list
+                } else {
+                    responseDiv.innerHTML = `<div class="response error">${JSON.stringify(data, null, 2)}</div>`;
+                }
+            } catch (error) {
+                responseDiv.innerHTML = `<div class="response error">Error: ${error.message}</div>`;
+            }
+        }
+
+        // Validate post
+        async function validatePost() {
+            const responseDiv = document.getElementById('draftResponse');
+            responseDiv.innerHTML = '<div class="response info">Validating post...</div>';
+
+            const platform = document.getElementById('platform').value;
+            const message = document.getElementById('message').value;
+            const imageUrl = document.getElementById('imageUrl').value;
+            const link = document.getElementById('link').value;
+
+            try {
+                const response = await fetch(`${API_URL}/validate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ platform, message, imageUrl, link, caption: message })
+                });
+
+                const data = await response.json();
+                responseDiv.innerHTML = `<div class="response info">${JSON.stringify(data, null, 2)}</div>`;
+            } catch (error) {
+                responseDiv.innerHTML = `<div class="response error">Error: ${error.message}</div>`;
+            }
+        }
+
+        // Test live post (only if enabled)
+        async function testLivePost() {
+            if (!confirm('⚠️ WARNING: This will attempt to post LIVE to Facebook/Instagram if automation is enabled. Continue?')) {
+                return;
+            }
+
+            const responseDiv = document.getElementById('draftResponse');
+            responseDiv.innerHTML = '<div class="response info">Attempting live post...</div>';
+
+            const platform = document.getElementById('platform').value;
+            const message = document.getElementById('message').value;
+            const imageUrl = document.getElementById('imageUrl').value;
+            const link = document.getElementById('link').value;
+
+            try {
+                const response = await fetch(`${API_URL}/test-post`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ platform, message, imageUrl, link, caption: message })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    responseDiv.innerHTML = `<div class="response success">${JSON.stringify(data, null, 2)}</div>`;
+                } else {
+                    responseDiv.innerHTML = `<div class="response error">${JSON.stringify(data, null, 2)}</div>`;
+                }
+            } catch (error) {
+                responseDiv.innerHTML = `<div class="response error">Error: ${error.message}</div>`;
+            }
+        }
+
+        // Load drafts
+        async function loadDrafts() {
+            const listDiv = document.getElementById('draftsList');
+            listDiv.innerHTML = '<p style="color: #666;">Loading drafts...</p>';
+
+            try {
+                const response = await fetch(`${API_URL}/drafts`);
+                const data = await response.json();
+
+                if (data.success && data.drafts.length > 0) {
+                    let html = '';
+                    data.drafts.forEach(draft => {
+                        html += `<div class="draft-item">
+                            <div class="draft-header">
+                                <span class="draft-id">${draft.id}</span>
+                                <span class="draft-platform">${draft.platform.toUpperCase()}</span>
+                            </div>
+                            <div class="draft-message">${draft.postData.message || draft.postData.caption}</div>
+                            <div class="draft-actions">
+                                <button class="btn-primary" onclick="publishDraft('${draft.id}')">Publish</button>
+                                <button class="btn-danger" onclick="deleteDraft('${draft.id}')">Delete</button>
+                            </div>
+                        </div>`;
+                    });
+                    listDiv.innerHTML = html;
+                } else {
+                    listDiv.innerHTML = '<p style="color: #999; text-align: center;">No drafts yet. Create your first draft above!</p>';
+                }
+            } catch (error) {
+                listDiv.innerHTML = `<div class="response error">Error: ${error.message}</div>`;
+            }
+        }
+
+        // Publish draft
+        async function publishDraft(draftId) {
+            if (!confirm('⚠️ WARNING: This will publish the draft LIVE if automation is enabled. Continue?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/publish/${draftId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                const data = await response.json();
+                alert(JSON.stringify(data, null, 2));
+                loadDrafts(); // Refresh list
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        // Delete draft
+        async function deleteDraft(draftId) {
+            if (!confirm('Delete this draft?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/drafts/${draftId}`, {
+                    method: 'DELETE'
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    loadDrafts(); // Refresh list
+                } else {
+                    alert('Failed to delete draft');
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        // Auto-load on page load
+        window.addEventListener('load', () => {
+            checkConfig();
+            loadDrafts();
+        });
+    </script>
+</body>
+</html>

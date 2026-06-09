@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Tow Riders Sacramento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; background: #F9FAFB; }
+        
+        .emergency-bar {
+            background: #DC2626;
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            font-weight: 600;
+        }
+        .emergency-bar a { color: white; text-decoration: none; margin-left: 15px; }
+        
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0B5394;
+            text-decoration: none;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+        .contact-card h1 {
+            color: #0B5394;
+            margin-bottom: 10px;
+        }
+        .contact-card .subtitle {
+            color: #6B7280;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info {
+            margin-bottom: 30px;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: #F9FAFB;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .info-item i {
+            font-size: 24px;
+            color: #0B5394;
+        }
+        .info-item div h3 {
+            color: #111827;
+            margin-bottom: 5px;
+        }
+        .info-item div p {
+            color: #6B7280;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #D1D5DB;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0B5394;
+        }
+        
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #0B5394;
+            color: white;
+        }
+        .btn:hover {
+            background: #084070;
+        }
+        .btn:disabled {
+            background: #9CA3AF;
+            cursor: not-allowed;
+        }
+        
+        .footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="emergency-bar">
+        🚨 24/7 Emergency Service Available
+        <a href="tel:9255469711"><i class="fas fa-phone"></i> (925) 546-9711</a>
+    </div>
+
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-truck"></i>
+                Tow Riders
+            </a>
+        </div>
+    </header>
+
+    <div class="contact-container">
+        <div class="contact-grid">
+            <div>
+                <h1 style="color: #0B5394; margin-bottom: 10px;">Contact Us</h1>
+                <p style="color: #6B7280; margin-bottom: 30px;">Get in touch with our team 24/7</p>
+                
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p><a href="tel:9255469711" style="color: #0B5394; text-decoration: none;">(925) 546-9711</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:services@towriders.com" style="color: #0B5394; text-decoration: none;">services@towriders.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Service Area</h3>
+                            <p>Sacramento & Surrounding Areas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Hours</h3>
+                            <p>24/7 Emergency Service</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <h1>Send a Message</h1>
+                <p class="subtitle">We'll get back to you as soon as possible</p>
+
+                <div id="messageBox" class="message"></div>
+
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>Your Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="(925) 546-9711">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Subject *</label>
+                        <input type="text" id="subject" name="subject" required placeholder="How can we help?">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message *</label>
+                        <textarea id="message" name="message" required placeholder="Your message..." rows="5"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Tow Riders. All rights reserved.</p>
+        <p>Sacramento's Most Trusted Towing Service</p>
+    </footer>
+
+    <script>
+        // API Configuration
+        const API_BASE = 'https://tow-riders-production.up.railway.app';
+
+        // Get form elements
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const messageBox = document.getElementById('messageBox');
+
+        // Handle form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+            // Collect form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                // Send to backend
+                const response = await fetch(`${API_BASE}/api/contact`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // ✅ Track Contact Form Submission in Google Analytics
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'generate_lead', {
+                            lead_type: 'contact_form'
+                        });
+                        console.log('✅ GA4: generate_lead (contact) tracked');
+                    }
+                    
+                    // ✅ Track in Facebook Pixel
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Contact');
+                        console.log('✅ Meta Pixel: Contact tracked');
+                    }
+                    
+                    // Show success message
+                    showMessage(
+                        `✅ Message Sent Successfully! We'll contact you soon at ${formData.email}.`,
+                        'success'
+                    );
+                    
+                    // Reset form
+                    form.reset();
+                } else {
+                    // Show error message
+                    showMessage(
+                        `❌ Error: ${data.message || 'Failed to send message. Please try again.'}`,
+                        'error'
+                    );
+                }
+            } catch (error) {
+                // Network error
+                showMessage(
+                    `❌ Network Error: Unable to connect to server. Please try calling us at (925) 546-9711.`,
+                    'error'
+                );
+                console.error('Contact form error:', error);
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            }
+        });
+
+        // Show message function
+        function showMessage(text, type) {
+            messageBox.textContent = text;
+            messageBox.className = `message ${type}`;
+            
+            // Scroll to message
+            messageBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            // Auto-hide success messages after 10 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageBox.style.display = 'none';
+                }, 10000);
+            }
+        }
+    </script>
+</body>
+</html>

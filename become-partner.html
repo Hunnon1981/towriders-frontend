@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Partner with TOW RIDERS to expand your towing business. Access 1000+ monthly service requests and join Sacramento County's premier towing network.">
+    <title>Partner With Us - TOW RIDERS Sacramento | Towing Company Partnership</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #0B5394;
+            --secondary-blue: #1976D2;
+            --primary-red: #DC2626;
+            --success-green: #10B981;
+            --warning-orange: #F59E0B;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-600: #4B5563;
+            --gray-900: #111827;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: white;
+        }
+        
+        /* Emergency Bar */
+        .emergency-bar {
+            background: var(--primary-red);
+            color: white;
+            padding: 0.75rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .emergency-bar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 2px solid white;
+            padding-bottom: 2px;
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--primary-blue);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-blue);
+        }
+        
+        .btn-book {
+            background: var(--primary-red);
+            color: white !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-book:hover {
+            background: #B91C1C;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+            color: #FCD34D;
+        }
+        
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            margin-bottom: 3rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--gray-900);
+        }
+        
+        .benefit-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-highlight {
+            background: var(--gray-50);
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--primary-blue);
+            text-align: center;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            background: var(--gray-50);
+            padding: 4rem 2rem;
+        }
+        
+        .how-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .steps {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--gray-900);
+        }
+        
+        .step-content p {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+        
+        /* Requirements */
+        .requirements-section {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .requirement-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--success-green);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .requirement-item i {
+            color: var(--success-green);
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .requirement-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-900);
+        }
+        
+        .requirement-item p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+        
+        /* Partner Application Form */
+        .application-section {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        
+        .application-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--gray-900);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(11, 83, 148, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 3rem 2rem 1.5rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-stats {
+                gap: 1.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .application-form {
+                padding: 2rem 1.5rem;
+            }
+            
+            .step {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Emergency Bar -->
+    <div class="emergency-bar">
+        🚨 PARTNER INFORMATION • CALL NOW: <a href="tel:9255469711">(925) 546-9711</a> • SACRAMENTO'S LEADING TOWING NETWORK
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">EXPRESS TOW</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="quote.html">Get Instant Quote</a></li>
+                    <li><a href="service-areas.html">Service Areas</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="become-partner.html" class="active">Partner With Us</a></li>
+                    <li><a href="quote.html" class="btn-book">Get Quote</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>🤝 Expand Your Towing Business With TOW RIDERS</h1>
+        <p>Join Sacramento County's premier towing network and access consistent, high-quality service requests</p>
+        
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-number">1,000+</span>
+                <span class="stat-label">Monthly Job Requests</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Partner Companies</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Job Distribution</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">$200K+</span>
+                <span class="stat-label">Avg. Annual Revenue Boost</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <h2 class="section-title">Partnership Advantages</h2>
+        <p class="section-subtitle">Why Sacramento County's premier towing companies partner with TOW RIDERS</p>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3>Exclusive Job Network</h3>
+                <p>Get instant access to our dispatch system with 1000+ monthly emergency and scheduled towing requests across Sacramento County.</p>
+                <div class="benefit-highlight">
+                    Avg. 40-60 jobs/month per partner
+                </div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <h3>Guaranteed Payment</h3>
+                <p>Fast, reliable payment processing. Get paid within 24-48 hours of job completion. No more chasing customers for payment.</p>
+                <div class="benefit-highlight">
+                    Weekly direct deposit available
+                </div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Advanced Technology</h3>
+                <p>Access our modern partner portal with GPS dispatch, real-time job tracking, automated invoicing, and performance analytics.</p>
+                <div class="benefit-highlight">
+                    Mobile app included
+                </div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Insurance Coverage</h3>
+                <p>Additional liability coverage for all jobs dispatched through our network. Protect your business with comprehensive insurance.</p>
+                <div class="benefit-highlight">
+                    Up to $2M coverage
+                </div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>Brand Recognition</h3>
+                <p>Benefit from our extensive marketing and reputation. Get listed on our website and featured in Google search results.</p>
+                <div class="benefit-highlight">
+                    5-star rating network
+                </div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>24/7 Support</h3>
+                <p>Dedicated partner support team available around the clock. Get help with dispatch, billing, or technical issues anytime.</p>
+                <div class="benefit-highlight">
+                    Response within 15 min
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="how-container">
+            <h2 class="section-title">How Partnership Works</h2>
+            <p class="section-subtitle">Simple, transparent process from application to first job</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Submit Application</h3>
+                        <p>Fill out our partnership application form below. Include your business details, fleet information, and insurance documentation. Our team reviews all applications within 48 hours.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Verification & Approval</h3>
+                        <p>We verify your business license, insurance coverage, and fleet condition. Background checks on all drivers. Once approved, we'll schedule an onboarding call to explain our system.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Training & Setup</h3>
+                        <p>Get access to our partner portal and mobile app. We provide comprehensive training on job acceptance, customer service standards, documentation, and payment processing.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Start Receiving Jobs</h3>
+                        <p>Begin receiving job requests immediately. Accept jobs that fit your availability and service area. Build your reputation with customer ratings and grow your revenue.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Requirements -->
+    <section class="requirements-section">
+        <h2 class="section-title">Partner Requirements</h2>
+        <p class="section-subtitle">What we look for in our partner towing companies</p>
+        
+        <div class="requirements-grid">
+            <div class="requirement-item">
+                <i class="fas fa-check-circle"></i>
+                <h4>Valid Business License</h4>
+                <p>Active towing business license in California with good standing</p>
+            </div>
+            
+            <div class="requirement-item">
+                <i class="fas fa-check-circle"></i>
+                <h4>Insurance Coverage</h4>
+                <p>Minimum $1M liability insurance and workers' compensation</p>
+            </div>
+            
+            <div class="requirement-item">
+                <i class="fas fa-check-circle"></i>
+                <h4>Professional Fleet</h4>
+                <p>Minimum 2 operational tow trucks (flatbed or wrecker)</p>
+            </div>
+            
+            <div class="requirement-item">
+                <i class="fas fa-check-circle"></i>
+                <h4>Licensed Drivers</h4>
+                <p>All drivers must have valid CDL and clean driving records</p>
+            </div>
+            
+            <div class="requirement-item">
+                <i class="fas fa-check-circle"></i>
+                <h4>Service Area</h4>
+                <p>Ability to service Sacramento County or surrounding areas</p>
+            </div>
+            
+            <div class="requirement-item">
+                <i class="fas fa-check-circle"></i>
+                <h4>Response Time</h4>
+                <p>Commitment to 30-45 minute average response time</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Application Form -->
+    <section class="application-section">
+        <h2 class="section-title">Apply for Partnership</h2>
+        <p class="section-subtitle">Submit your application and join Sacramento's premier towing network</p>
+        
+        <form class="application-form" id="partnerApplication">
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary-blue);">Company Information</h3>
+            
+            <div class="form-group">
+                <label>Company Name *</label>
+                <input type="text" name="companyName" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Contact Person *</label>
+                    <input type="text" name="contactPerson" required>
+                </div>
+                <div class="form-group">
+                    <label>Job Title *</label>
+                    <input type="text" name="jobTitle" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Business Phone *</label>
+                    <input type="tel" name="businessPhone" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" name="email" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Business Address *</label>
+                <input type="text" name="businessAddress" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Years in Business *</label>
+                    <select name="yearsInBusiness" required>
+                        <option value="">Select Years</option>
+                        <option value="0-1 years">0-1 years</option>
+                        <option value="1-3 years">1-3 years</option>
+                        <option value="3-5 years">3-5 years</option>
+                        <option value="5-10 years">5-10 years</option>
+                        <option value="10+ years">10+ years</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Business License Number *</label>
+                    <input type="text" name="licenseNumber" required>
+                </div>
+            </div>
+            
+            <h3 style="margin: 2rem 0 1.5rem; color: var(--primary-blue);">Fleet Information</h3>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Number of Tow Trucks *</label>
+                    <select name="numberOfTrucks" required>
+                        <option value="">Select Number</option>
+                        <option value="1-2 trucks">1-2 trucks</option>
+                        <option value="3-5 trucks">3-5 trucks</option>
+                        <option value="6-10 trucks">6-10 trucks</option>
+                        <option value="10+ trucks">10+ trucks</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Number of Drivers *</label>
+                    <select name="numberOfDrivers" required>
+                        <option value="">Select Number</option>
+                        <option value="1-3 drivers">1-3 drivers</option>
+                        <option value="4-7 drivers">4-7 drivers</option>
+                        <option value="8-15 drivers">8-15 drivers</option>
+                        <option value="15+ drivers">15+ drivers</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Types of Trucks (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" name="truckTypes" value="Flatbed" id="flatbed">
+                    <label for="flatbed">Flatbed Tow Trucks</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" name="truckTypes" value="Wrecker" id="wrecker">
+                    <label for="wrecker">Wheel-Lift/Wrecker</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" name="truckTypes" value="HeavyDuty" id="heavyDuty">
+                    <label for="heavyDuty">Heavy-Duty Trucks</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" name="truckTypes" value="Roadside" id="roadside">
+                    <label for="roadside">Roadside Assistance Vehicles</label>
+                </div>
+            </div>
+            
+            <h3 style="margin: 2rem 0 1.5rem; color: var(--primary-blue);">Service Details</h3>
+            
+            <div class="form-group">
+                <label>Service Coverage Area *</label>
+                <select name="serviceArea" required>
+                    <option value="">Select Area</option>
+                    <option value="Sacramento County">Sacramento County</option>
+                    <option value="Sacramento + Surrounding">Sacramento + Surrounding Counties</option>
+                    <option value="Greater Sacramento Region">Greater Sacramento Region</option>
+                    <option value="Northern California">Northern California</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Average Response Time *</label>
+                <select name="responseTime" required>
+                    <option value="">Select Time</option>
+                    <option value="15-30 minutes">15-30 minutes</option>
+                    <option value="30-45 minutes">30-45 minutes</option>
+                    <option value="45-60 minutes">45-60 minutes</option>
+                    <option value="60+ minutes">60+ minutes</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>24/7 Availability *</label>
+                <select name="availability" required>
+                    <option value="">Select Availability</option>
+                    <option value="Yes - 24/7">Yes - 24/7 Service</option>
+                    <option value="Business Hours Only">Business Hours Only</option>
+                    <option value="Weekends Only">Weekends Only</option>
+                    <option value="Flexible Schedule">Flexible Schedule</option>
+                </select>
+            </div>
+            
+            <h3 style="margin: 2rem 0 1.5rem; color: var(--primary-blue);">Insurance & Documentation</h3>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Insurance Provider *</label>
+                    <input type="text" name="insuranceProvider" required>
+                </div>
+                <div class="form-group">
+                    <label>Policy Number *</label>
+                    <input type="text" name="policyNumber" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Coverage Amount *</label>
+                <select name="coverageAmount" required>
+                    <option value="">Select Coverage</option>
+                    <option value="$500K - $1M">$500K - $1M</option>
+                    <option value="$1M - $2M">$1M - $2M</option>
+                    <option value="$2M - $5M">$2M - $5M</option>
+                    <option value="$5M+">$5M+</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Tell us about your company and why you want to partner with TOW RIDERS</label>
+                <textarea name="message" rows="4" placeholder="Share your company's strengths, service philosophy, or any questions..."></textarea>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" name="certify" id="certify" required>
+                <label for="certify">I certify that all information provided is accurate and our company meets all requirements</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" name="terms" id="terms" required>
+                <label for="terms">I agree to TOW RIDERS partner terms and conditions</label>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Partnership Application</button>
+        </form>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div>
+                <h3>TOW RIDERS</h3>
+                <p style="opacity: 0.8;">Sacramento's most trusted 24/7 emergency towing and roadside assistance service.</p>
+            </div>
+            
+            <div>
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="quote.html">Get Quote</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3>Partners</h3>
+                <ul class="footer-links">
+                    <li><a href="become-partner.html">Partner With Us</a></li>
+                    <li><a href="partner.html">Partner Login</a></li>
+                    <li><a href="driver.html">Driver Login</a></li>
+                    <li><a href="dispatch.html">Dispatch Dashboard</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3>Contact</h3>
+                <ul class="footer-links">
+                    <li>📞 (925) 546-9711</li>
+                    <li>📧 services@towriders.com</li>
+                    <li>📍 Sacramento County, CA</li>
+                    <li>🕐 24/7 Partner Support</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 TOW RIDERS Sacramento. All rights reserved. | Licensed & Insured</p>
+        </div>
+    </footer>
+    
+    <!-- Marketing Tracking -->
+    <script src="assets/js/tracking.js"></script>
+    
+    <script>
+        document.getElementById('partnerApplication').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Track partner application
+            if (window.ExpressTowTracking) {
+                const formData = new FormData(this);
+                window.ExpressTowTracking.trackPartnerApplicationSubmit({
+                    companyName: formData.get('companyName') || 'unknown',
+                    serviceType: formData.get('serviceType') || 'unknown'
+                });
+            }
+            
+            alert('✅ Thank you for your partnership application!\n\nWe have received your submission and will review it within 48 hours.\n\nOur partnership team will contact you at the email or phone number provided to discuss next steps.\n\nPartner Questions? Call (925) 546-9711');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

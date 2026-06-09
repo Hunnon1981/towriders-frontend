@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get an instant quote for towing and roadside assistance services in Sacramento. Real-time pricing calculator.">
+    <title>Instant Quote - Tow Riders</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --red: #dc2626;
+            --red-dark: #b91c1c;
+            --red-light: #fef2f2;
+            --bg: #f9fafb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Emergency Alert Bar */
+        .emergency-alert-bar {
+            background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+        
+        .emergency-alert-bar a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid white;
+        }
+        
+        /* Header */
+        header {
+            background: var(--card);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--red);
+            text-decoration: none;
+        }
+        
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover,
+        nav a.active {
+            color: var(--red);
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        /* Service Tiles */
+        .service-tiles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .service-tile {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .service-tile:hover {
+            border-color: var(--red);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.1);
+        }
+        
+        .service-tile.selected {
+            border-color: var(--red);
+            background: var(--red-light);
+        }
+        
+        .service-tile i {
+            font-size: 2rem;
+            color: var(--red);
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-tile .title {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        
+        /* Grid Layout */
+        .quote-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        /* Form Card */
+        .form-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .form-row {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-row label {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-row input,
+        .form-row select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        .form-row input:focus,
+        .form-row select:focus {
+            outline: none;
+            border-color: var(--red);
+        }
+        
+        .form-row .icon-input {
+            position: relative;
+        }
+        
+        .form-row .icon-input i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+        
+        .form-row .icon-input input {
+            padding-left: 2.5rem;
+        }
+        
+        /* Distance Calculation Status */
+        .distance-status {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            color: var(--text-light);
+        }
+        
+        .distance-status.success {
+            color: var(--success);
+        }
+        
+        .distance-status.error {
+            color: var(--red);
+        }
+        
+        /* Price Panel */
+        .price-panel {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 100px;
+        }
+        
+        .price-panel h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        .price-total {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-breakdown {
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            color: var(--text-light);
+        }
+        
+        .price-item.hidden {
+            display: none;
+        }
+        
+        .price-item .label {
+            font-weight: 500;
+        }
+        
+        .price-item .value {
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: var(--red);
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .btn-primary:hover {
+            background: var(--red-dark);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--red);
+            border: 2px solid var(--red);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--red-light);
+        }
+        
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+            text-decoration: none;
+            transition: transform 0.3s;
+            z-index: 99;
+        }
+        
+        .fab:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Autocomplete Results */
+        .autocomplete-results {
+            position: absolute;
+            width: 100%;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .autocomplete-results.active {
+            display: block;
+        }
+        
+        .autocomplete-item {
+            padding: 0.75rem;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+        
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+        
+        .autocomplete-item:hover {
+            background: var(--red-light);
+        }
+        
+        .autocomplete-item .name {
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .autocomplete-item .address {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .quote-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .price-panel {
+                position: static;
+            }
+            
+            .service-tiles {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Emergency Alert Bar -->
+    <div class="emergency-alert-bar">
+        🚨 EMERGENCY TOWING? <a href="tel:9255469711">CALL NOW: (925) 546-9711</a> - 20 Minute Response Time
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Tow Riders</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="quote.html" class="active">Instant Quote</a>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Get an Instant Quote</h1>
+        <p class="subtitle">Select a service and get your price estimate in seconds</p>
+        
+        <!-- Service Tiles -->
+        <div class="service-tiles">
+            <div class="service-tile" data-service="towing_drivable">
+                <i class="fas fa-car"></i>
+                <div class="title">Towing<br>Drivable Vehicle</div>
+            </div>
+            <div class="service-tile" data-service="towing_nondrivable">
+                <i class="fas fa-truck-pickup"></i>
+                <div class="title">Towing<br>Non-Drivable</div>
+            </div>
+            <div class="service-tile" data-service="jump_start">
+                <i class="fas fa-bolt"></i>
+                <div class="title">Jump Start</div>
+            </div>
+            <div class="service-tile" data-service="tire_change">
+                <i class="fas fa-circle-notch"></i>
+                <div class="title">Tire Change</div>
+            </div>
+            <div class="service-tile" data-service="lockout">
+                <i class="fas fa-key"></i>
+                <div class="title">Lockout</div>
+            </div>
+            <div class="service-tile" data-service="fuel_delivery">
+                <i class="fas fa-gas-pump"></i>
+                <div class="title">Fuel Delivery</div>
+            </div>
+        </div>
+        
+        <!-- Quote Grid -->
+        <div class="quote-grid">
+            <!-- Left: Form -->
+            <div class="form-card">
+                <h2 style="margin-bottom: 1.5rem;">Quote Details</h2>
+                
+                <div class="form-row">
+                    <label for="vehicleType">Vehicle Type</label>
+                    <select id="vehicleType">
+                        <option value="sedan">Sedan</option>
+                        <option value="suv">SUV</option>
+                        <option value="truck">Truck</option>
+                        <option value="van">Van</option>
+                        <option value="motorcycle">Motorcycle</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <label for="condition">Condition</label>
+                    <select id="condition">
+                        <option value="drivable">Drivable</option>
+                        <option value="nondrivable">Non-drivable</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <label for="pickup">Pickup Location</label>
+                    <div style="position: relative;">
+                        <div class="icon-input">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" id="pickup" placeholder="Start typing address... (e.g., Sacramento, CA)">
+                        </div>
+                        <div id="pickup-results" class="autocomplete-results"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <label for="dropoff">Drop-off Location (if applicable)</label>
+                    <div style="position: relative;">
+                        <div class="icon-input">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" id="dropoff" placeholder="Start typing address... (e.g., Elk Grove, CA)">
+                        </div>
+                        <div id="dropoff-results" class="autocomplete-results"></div>
+                    </div>
+                    <div id="distanceStatus" class="distance-status"></div>
+                </div>
+                
+                <div class="form-row">
+                    <label for="timeOfDay">Time of Day</label>
+                    <select id="timeOfDay">
+                        <option value="day">Daytime</option>
+                        <option value="night">Late Night (+$40)</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <label for="serviceLevel">Service Level</label>
+                    <select id="serviceLevel">
+                        <option value="standard">Standard</option>
+                        <option value="priority">Priority (+$30)</option>
+                        <option value="rush">Rush (+$60)</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <label for="distance">Distance (miles)</label>
+                    <input type="number" id="distance" placeholder="Will auto-calculate when both addresses selected" min="0" step="0.1" value="5">
+                    <small style="color: #10b981; font-size: 0.875rem; display: block; margin-top: 0.5rem; font-weight: 600;">
+                        ✅ Distance will calculate AUTOMATICALLY when you select both pickup and dropoff addresses
+                    </small>
+                </div>
+            </div>
+            
+            <!-- Right: Price Panel -->
+            <div class="price-panel">
+                <h2>Estimated Total</h2>
+                <div class="price-total" id="total">$0</div>
+                
+                <div class="price-breakdown">
+                    <div class="price-item">
+                        <span class="label">Base Fee</span>
+                        <span class="value" id="base">$0</span>
+                    </div>
+                    <div class="price-item" id="distRow">
+                        <span class="label">Distance Fee <span id="distLabel">(0 mi)</span></span>
+                        <span class="value" id="distFee">$0</span>
+                    </div>
+                    <div class="price-item" id="timeRow">
+                        <span class="label">Time of Day</span>
+                        <span class="value" id="timeFee">$0</span>
+                    </div>
+                    <div class="price-item" id="levelRow">
+                        <span class="label">Service Level</span>
+                        <span class="value" id="levelFee">$0</span>
+                    </div>
+                </div>
+                
+                <button type="button" id="continueToReview" class="btn btn-primary" onclick="proceedToReview()">
+                    <i class="fas fa-arrow-right"></i> Continue to Review
+                </button>
+                <a href="tel:9255469711" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> Call Now: (925) 546-9711
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Action Button -->
+    <a href="tel:9255469711" class="fab">
+        <i class="fas fa-phone"></i>
+    </a>
+    
+    <!-- JavaScript - Embedded for reliability -->
+    <script>
+        // Constants
+        const PHONE = "9255469711";
+        
+        // Service pricing
+        const SERVICE = {
+            towing_drivable: {
+                base: 100,
+                perMile: 5.5
+            },
+            towing_nondrivable: {
+                base: 125,
+                perMile: 6.0
+            },
+            jump_start: {
+                base: 85,
+                perMile: 0
+            },
+            tire_change: {
+                base: 95,
+                perMile: 0
+            },
+            lockout: {
+                base: 95,
+                perMile: 0
+            },
+            fuel_delivery: {
+                base: 110,
+                perMile: 0
+            }
+        };
+        
+        // Additional fees
+        const TIME_FEE = {
+            day: 0,
+            night: 40
+        };
+        
+        const LEVEL_FEE = {
+            standard: 0,
+            priority: 30,
+            rush: 60
+        };
+        
+        // State
+        let selectedService = null;
+        let pickupCoords = null;
+        let dropoffCoords = null;
+        
+        // Utility: format as money
+        function money(amount) {
+            return '$' + amount.toFixed(0);
+        }
+        
+        // Get distance in miles
+        function getDistanceMiles() {
+            const dist = parseFloat(document.getElementById('distance').value) || 0;
+            return Math.max(0, dist);
+        }
+        
+        // Calculate distance between two coordinates (Haversine formula)
+        function calculateHaversineDistance(lat1, lon1, lat2, lon2) {
+            const R = 3959; // Earth's radius in miles
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+        
+        // Manual calculate distance button
+        function manualCalculateDistance() {
+            console.log('🔘 Manual calculate button clicked');
+            console.log('  pickupCoords:', pickupCoords);
+            console.log('  dropoffCoords:', dropoffCoords);
+            
+            if (!pickupCoords) {
+                alert('⚠️ Please select a PICKUP location first!\n\n1. Type an address in Pickup Location\n2. Click an address from the dropdown');
+                return;
+            }
+            
+            if (!dropoffCoords) {
+                alert('⚠️ Please select a DROPOFF location first!\n\n1. Type an address in Drop-off Location\n2. Click an address from the dropdown');
+                return;
+            }
+            
+            // Both coordinates available - calculate now!
+            console.log('✅ Both coordinates available - calculating...');
+            updateDistance();
+            
+            alert('✅ Distance calculated!\n\nCheck the distance field and pricing panel.');
+        }
+        
+        // Make function global
+        window.manualCalculateDistance = manualCalculateDistance;
+        
+        // Update distance when both locations are selected
+        function updateDistance() {
+            console.log('📏 updateDistance() called');
+            console.log('  pickupCoords:', pickupCoords);
+            console.log('  dropoffCoords:', dropoffCoords);
+            
+            if (pickupCoords && dropoffCoords) {
+                console.log('✅ Both coordinates present - calculating...');
+                
+                const distance = calculateHaversineDistance(
+                    pickupCoords.lat,
+                    pickupCoords.lng,
+                    dropoffCoords.lat,
+                    dropoffCoords.lng
+                );
+                
+                console.log('📏 Distance calculated:', distance.toFixed(1), 'miles');
+                
+                // Update distance input
+                const distanceInput = document.getElementById('distance');
+                if (distanceInput) {
+                    distanceInput.value = distance.toFixed(1);
+                    console.log('✅ Distance field updated');
+                } else {
+                    console.error('❌ Distance input field not found!');
+                }
+                
+                // Update status message
+                const statusDiv = document.getElementById('distanceStatus');
+                if (statusDiv) {
+                    statusDiv.textContent = `✓ ${distance.toFixed(1)} miles (straight-line distance)`;
+                    statusDiv.className = 'distance-status success';
+                    console.log('✅ Status message updated');
+                } else {
+                    console.error('❌ Status div not found!');
+                }
+                
+                // Recalculate pricing
+                console.log('💰 Recalculating pricing...');
+                calc();
+            } else {
+                console.log('⚠️ Cannot calculate distance:');
+                if (!pickupCoords) console.log('  ❌ Missing pickup coordinates');
+                if (!dropoffCoords) console.log('  ❌ Missing dropoff coordinates');
+            }
+        }
+        
+        // Calculate and update pricing
+        function calc() {
+            if (!selectedService) {
+                document.getElementById('total').textContent = '$0';
+                document.getElementById('base').textContent = '$0';
+                document.getElementById('distFee').textContent = '$0';
+                document.getElementById('timeFee').textContent = '$0';
+                document.getElementById('levelFee').textContent = '$0';
+                document.getElementById('distLabel').textContent = '(0 mi)';
+                return;
+            }
+            
+            const pricing = SERVICE[selectedService];
+            const distance = getDistanceMiles();
+            const timeOfDay = document.getElementById('timeOfDay').value;
+            const serviceLevel = document.getElementById('serviceLevel').value;
+            
+            const baseFee = pricing.base;
+            const distanceFee = distance * pricing.perMile;
+            const timeFee = TIME_FEE[timeOfDay];
+            const levelFee = LEVEL_FEE[serviceLevel];
+            
+            const total = baseFee + distanceFee + timeFee + levelFee;
+            
+            document.getElementById('total').textContent = money(total);
+            document.getElementById('base').textContent = money(baseFee);
+            document.getElementById('distFee').textContent = money(distanceFee);
+            document.getElementById('timeFee').textContent = money(timeFee);
+            document.getElementById('levelFee').textContent = money(levelFee);
+            document.getElementById('distLabel').textContent = `(${distance.toFixed(1)} mi)`;
+            
+            document.getElementById('distRow').classList.toggle('hidden', distanceFee === 0);
+            document.getElementById('timeRow').classList.toggle('hidden', timeFee === 0);
+            document.getElementById('levelRow').classList.toggle('hidden', levelFee === 0);
+        }
+        
+        // Wire up service tiles
+        function wireTiles() {
+            const tiles = document.querySelectorAll('.service-tile');
+            console.log('Found service tiles:', tiles.length);
+            tiles.forEach(tile => {
+                tile.addEventListener('click', () => {
+                    console.log('Tile clicked:', tile.dataset.service);
+                    tiles.forEach(t => t.classList.remove('selected'));
+                    tile.classList.add('selected');
+                    selectedService = tile.dataset.service;
+                    console.log('Selected service:', selectedService);
+                    calc();
+                });
+            });
+        }
+        
+        // Wire up form inputs
+        function wireInputs() {
+            const inputs = ['vehicleType', 'condition', 'timeOfDay', 'serviceLevel', 'distance'];
+            inputs.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('change', calc);
+                    el.addEventListener('input', calc);
+                }
+            });
+        }
+        
+        // Search for address using Nominatim (OpenStreetMap)
+        async function searchAddress(query, resultsDiv, coordsVar) {
+            if (query.length < 3) {
+                resultsDiv.classList.remove('active');
+                return;
+            }
+            
+            try {
+                // Search California addresses with Nominatim
+                const response = await fetch(
+                    `https://nominatim.openstreetmap.org/search?` +
+                    `q=${encodeURIComponent(query)},California,USA&` +
+                    `format=json&` +
+                    `addressdetails=1&` +
+                    `limit=5&` +
+                    `countrycodes=us`
+                );
+                
+                const results = await response.json();
+                
+                if (results.length === 0) {
+                    resultsDiv.innerHTML = '<div class="autocomplete-item"><div class="name">No results found</div></div>';
+                    resultsDiv.classList.add('active');
+                    return;
+                }
+                
+                resultsDiv.innerHTML = '';
+                results.forEach(result => {
+                    const item = document.createElement('div');
+                    item.className = 'autocomplete-item';
+                    
+                    const name = document.createElement('div');
+                    name.className = 'name';
+                    name.textContent = result.display_name.split(',')[0];
+                    
+                    const address = document.createElement('div');
+                    address.className = 'address';
+                    address.textContent = result.display_name;
+                    
+                    item.appendChild(name);
+                    item.appendChild(address);
+                    
+                    item.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        console.log('✅ Address clicked:', result.display_name);
+                        console.log('  Lat:', result.lat, 'Lon:', result.lon);
+                        
+                        const input = resultsDiv.id === 'pickup-results' ? 
+                            document.getElementById('pickup') : 
+                            document.getElementById('dropoff');
+                        
+                        input.value = result.display_name;
+                        
+                        // Store coordinates with explicit parsing
+                        const coords = {
+                            lat: parseFloat(result.lat),
+                            lng: parseFloat(result.lon)
+                        };
+                        
+                        if (resultsDiv.id === 'pickup-results') {
+                            pickupCoords = coords;
+                            console.log('📍 Pickup coords stored:', pickupCoords);
+                        } else {
+                            dropoffCoords = coords;
+                            console.log('📍 Dropoff coords stored:', dropoffCoords);
+                        }
+                        
+                        // Close dropdown
+                        resultsDiv.classList.remove('active');
+                        
+                        // Calculate distance
+                        console.log('🔄 Calling updateDistance...');
+                        console.log('  Have pickup?', pickupCoords !== null);
+                        console.log('  Have dropoff?', dropoffCoords !== null);
+                        updateDistance();
+                    });
+                    
+                    resultsDiv.appendChild(item);
+                });
+                
+                resultsDiv.classList.add('active');
+                
+            } catch (error) {
+                console.error('Address search error:', error);
+                resultsDiv.innerHTML = '<div class="autocomplete-item"><div class="name">Search error. Please try again.</div></div>';
+                resultsDiv.classList.add('active');
+            }
+        }
+        
+        // Set up autocomplete
+        function setupAutocomplete() {
+            const pickupInput = document.getElementById('pickup');
+            const dropoffInput = document.getElementById('dropoff');
+            const pickupResults = document.getElementById('pickup-results');
+            const dropoffResults = document.getElementById('dropoff-results');
+            
+            if (!pickupInput || !dropoffInput) {
+                console.error('Address input fields not found!');
+                return;
+            }
+            
+            let pickupTimeout;
+            let dropoffTimeout;
+            
+            pickupInput.addEventListener('input', (e) => {
+                clearTimeout(pickupTimeout);
+                pickupTimeout = setTimeout(() => {
+                    searchAddress(e.target.value, pickupResults, 'pickup');
+                }, 300);
+            });
+            
+            dropoffInput.addEventListener('input', (e) => {
+                clearTimeout(dropoffTimeout);
+                dropoffTimeout = setTimeout(() => {
+                    searchAddress(e.target.value, dropoffResults, 'dropoff');
+                }, 300);
+            });
+            
+            // Close results when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!pickupInput.contains(e.target) && !pickupResults.contains(e.target)) {
+                    pickupResults.classList.remove('active');
+                }
+                if (!dropoffInput.contains(e.target) && !dropoffResults.contains(e.target)) {
+                    dropoffResults.classList.remove('active');
+                }
+            });
+        }
+        
+        // Proceed to review page with quote data
+        function proceedToReview() {
+            // Validate required fields
+            const pickup = document.getElementById('pickup').value;
+            const distance = document.getElementById('distance').value;
+            
+            if (!selectedService) {
+                alert('⚠️ Please select a service type');
+                return;
+            }
+            
+            if (!pickup) {
+                alert('⚠️ Please enter a pickup location');
+                return;
+            }
+            
+            if (!distance || distance <= 0) {
+                alert('⚠️ Please enter a valid distance');
+                return;
+            }
+            
+            // Collect quote data
+            const quoteData = {
+                service: selectedService,
+                serviceName: document.querySelector('.service-tile.selected .title')?.textContent || 'Towing Service',
+                vehicleType: document.getElementById('vehicleType').value,
+                condition: document.getElementById('condition').value,
+                pickup: pickup,
+                dropoff: document.getElementById('dropoff').value,
+                distance: distance,
+                timeOfDay: document.getElementById('timeOfDay').value,
+                serviceLevel: document.getElementById('serviceLevel').value,
+                pricing: {
+                    base: parseFloat(document.getElementById('base').textContent.replace('$', '')),
+                    distance: parseFloat(document.getElementById('distFee').textContent.replace('$', '')),
+                    time: parseFloat(document.getElementById('timeFee').textContent.replace('$', '')),
+                    level: parseFloat(document.getElementById('levelFee').textContent.replace('$', '')),
+                    total: parseFloat(document.getElementById('total').textContent.replace('$', ''))
+                }
+            };
+            
+            // Save to sessionStorage
+            sessionStorage.setItem('quoteData', JSON.stringify(quoteData));
+            
+            // Redirect to review page
+            window.location.href = 'quote-review.html';
+        }
+        
+        // Make function global
+        window.proceedToReview = proceedToReview;
+        
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 Initializing Tow Riders Quote Calculator...');
+            console.log('🆓 FREE Mode - OpenStreetMap autocomplete & distance calculation');
+            
+            wireTiles();
+            wireInputs();
+            setupAutocomplete();
+            calc();
+            
+            console.log('✅ Quote calculator ready - 100% FREE with autocomplete!');
+        });
+    </script>
+</body>
+</html>

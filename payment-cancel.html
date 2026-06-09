@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled - Tow Riders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --red: #dc2626;
+            --red-dark: #b91c1c;
+            --red-light: #fef2f2;
+            --bg: #f9fafb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        .emergency-alert-bar { background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%); color: white; padding: 12px 20px; text-align: center; font-weight: 700; font-size: 15px; }
+        .emergency-alert-bar a { color: white; text-decoration: none; border-bottom: 2px solid white; }
+        
+        header { background: var(--card); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .header-content { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--red); text-decoration: none; }
+        
+        .container { max-width: 900px; margin: 2rem auto; padding: 0 2rem; }
+        
+        .cancel-card { background: var(--card); border-radius: 12px; padding: 3rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center; }
+        
+        .cancel-icon { width: 100px; height: 100px; background: var(--warning-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; }
+        .cancel-icon i { font-size: 3rem; color: var(--warning); }
+        
+        h1 { font-size: 2rem; margin-bottom: 1rem; color: var(--warning); }
+        .subtitle { font-size: 1.125rem; color: var(--text-light); margin-bottom: 2rem; }
+        
+        .info-box { background: var(--warning-light); border: 1px solid var(--warning); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; text-align: left; }
+        .info-box h3 { font-size: 1.125rem; color: #92400e; margin-bottom: 1rem; }
+        .info-box ul { margin-left: 1.5rem; color: #78350f; }
+        .info-box ul li { margin-bottom: 0.5rem; }
+        
+        .emergency-box { background: var(--red-light); border: 2px solid var(--red); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; }
+        .emergency-box h3 { font-size: 1.25rem; color: var(--red); margin-bottom: 0.75rem; }
+        .emergency-box p { font-size: 1rem; color: #991b1b; margin: 0; }
+        .emergency-phone { font-size: 1.5rem; font-weight: 700; color: var(--red); margin-top: 0.5rem; }
+        
+        .button-group { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .btn { padding: 1rem 2rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-primary { background: var(--red); color: white; }
+        .btn-primary:hover { background: var(--red-dark); }
+        .btn-secondary { background: white; color: var(--text); border: 2px solid var(--border); }
+        .btn-secondary:hover { border-color: var(--red); color: var(--red); }
+        .btn-warning { background: var(--warning); color: white; }
+        .btn-warning:hover { background: #d97706; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            .button-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="emergency-alert-bar">
+        🚨 EMERGENCY TOWING? <a href="tel:9255469711">CALL NOW: (925) 546-9711</a> - 20 Minute Response Time
+    </div>
+    
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Tow Riders</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="cancel-card">
+            <div class="cancel-icon">
+                <i class="fas fa-times"></i>
+            </div>
+            
+            <h1>Payment Cancelled</h1>
+            <p class="subtitle">Your payment was not completed. No charges were made to your card.</p>
+            
+            <div class="info-box">
+                <h3><i class="fas fa-info-circle"></i> What Happened?</h3>
+                <ul>
+                    <li>You cancelled the payment process</li>
+                    <li>Your booking was not confirmed</li>
+                    <li>No charges were made to your card</li>
+                    <li>Your quote information has been saved</li>
+                </ul>
+            </div>
+            
+            <div class="emergency-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> Need Immediate Help?</h3>
+                <p>If this is an emergency, please call us directly instead of booking online:</p>
+                <div class="emergency-phone">
+                    <i class="fas fa-phone"></i> (925) 546-9711
+                </div>
+                <p style="margin-top: 0.75rem; font-size: 0.875rem;">We're available 24/7 for emergency towing services</p>
+            </div>
+            
+            <div class="button-group">
+                <a href="quote-payment.html" class="btn btn-warning">
+                    <i class="fas fa-redo"></i> Try Payment Again
+                </a>
+                <a href="quote.html" class="btn btn-secondary">
+                    <i class="fas fa-edit"></i> Edit Quote
+                </a>
+                <a href="tel:9255469711" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> Call Now
+                </a>
+            </div>
+            
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+                <p style="font-size: 0.875rem; color: var(--text-light);">
+                    <strong>Having trouble with payment?</strong><br>
+                    Contact us at <a href="mailto:services@towriders.com" style="color: var(--red); text-decoration: none;">services@towriders.com</a> or call <a href="tel:9255469711" style="color: var(--red); text-decoration: none;">(925) 546-9711</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Restore booking data if available
+        const pendingBooking = sessionStorage.getItem('pendingBooking');
+        if (pendingBooking) {
+            // Restore to bookingData so user can retry
+            sessionStorage.setItem('bookingData', pendingBooking);
+        }
+        
+        // Track cancel event (optional - for analytics)
+        console.log('Payment cancelled by user');
+    </script>
+</body>
+</html>
